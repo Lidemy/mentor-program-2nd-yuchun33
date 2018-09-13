@@ -5,8 +5,8 @@ function add(a, b) {
     console.log(a);
     console.log(b);
     var result = ""
-    for(var i=0; i<a.length; i++){
-        var roundUp = 0
+    var roundUp = 0
+    for(var i=a.length-1; i>=0; i--){
         var numA = parseInt(a[i])
         var numB = parseInt(b[i])
         var numC = numA + numB + roundUp
@@ -22,6 +22,6 @@ function add(a, b) {
     return result
 }
 
-console.log(add('999','9999'))
-console.log(add('2345678','999999999999'))
+console.log(add('999','1'));
+
 module.exports = add;
