@@ -1,7 +1,7 @@
 ## 請找出三個課程裡面沒提到的 HTML 標籤並一一說明作用。
-- <a href="" target=""> 超連結，設定網址後可點擊至其他頁面。
-- <img src="" alt=""> 放圖片。
-- <form action="" method=""> 表單，提交資料用。
+- `<a href="" target=""></a>` 超連結，設定網址後可點擊至其他頁面。
+- `<img src="" alt=""/>` 放圖片。
+- `<form action="" method=""></form>` 表單，提交資料用。
 
 ## 請問什麼是盒模型（box modal）
 - HTML 的元素可視為一方塊，此方塊的組成包含 content、padding、border、margin。
