@@ -16,7 +16,7 @@
 |margin     |left and right  |all    |all            |
 
 ## 請問 position: static, relative, absolute 跟 fixed 的差別是什麼？
-- static：預設的位置。
-- relative：用於設定與預設位置的偏移距離。
-- absolute：定位點為上一層非 static 的元素（規定為找上層可被定位的元素，因為 static 不算可被定位，而 fixed 通常用於特殊狀況，所以才多設上層為 relative ），用於設定更新定位點後的位置。
-- fixed：用於固定在頁面的某處（無論卷軸如何移動）。
+- `static`：預設的位置。
+- `relative`：用於設定與預設位置的偏移距離。
+- `absolute`：定位點為上一層非 static 的元素（規定為找上層可被定位的元素，因為 static 不算可被定位，而 fixed 通常用於特殊狀況，所以才多設上層為 relative ），用於設定更新定位點後的位置。
+- `fixed`：用於固定在頁面的某處（無論卷軸如何移動）。
