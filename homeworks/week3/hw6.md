@@ -8,7 +8,7 @@
 
 ## 請問 display: inline, block 跟 inline-block 的差別是什麼？
 |display    |inline          |block  |inline-block   |
-|-----------|:--------------:|:-----:|:-------------:|
+|-----------|:---------------|:------|:--------------|
 |height     |no              |yes    |yes            |
 |width      |no              |yes    |yes            |
 |padding    |yes             |yes    |yes            |
