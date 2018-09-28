@@ -1,0 +1,35 @@
+<!DOCTYPE <!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>HW4</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <h1 class='hide'>hide</h1>
+    <h1 class='show'>show</h1>
+
+</body>
+<script>
+    var hide = q('.hide')
+    var show = q('.show')
+    hide.hide() // 隱藏
+    show.show() // 顯示
+
+    function q(element) {
+        let selected = document.querySelector(element)
+        let newObj = 
+        {
+            hide: function(){
+                selected.style.display = 'none'
+            },
+            show: function(){
+                selected.style.display = 'initial';
+            }
+        }
+        return newObj;
+    } 
+</script>
+
+</html>
+

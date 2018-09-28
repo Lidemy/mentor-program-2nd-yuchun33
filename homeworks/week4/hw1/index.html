@@ -1,0 +1,152 @@
+<html>
+    <head>
+        <title>Caculator</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta charset="utf-8">
+
+        <style>
+            *{
+                box-sizing:border-box;
+            }
+            #frame{
+                padding: 5px;
+                font-size: 18px;
+                display: flex;
+                flex-wrap: wrap-reverse;
+                width: 260px;
+                border: 1px solid #004385;
+                border-radius: 5px;
+                box-shadow: 1px 1px 1px 1px #ccc;
+            }
+            .row{
+                width: 250px;
+                display: flex;
+                justify-content: space-between;
+                margin: 2px auto;
+            }
+            .btn{
+                display: inline-block;
+                width: 50px;
+                margin: 2px;
+                text-align: center;
+                border: 1px solid #004385;
+                border-radius: 3px;
+                transition: background 0.3s;
+                padding: 2px;
+                box-shadow: 1px 1px 1px 1px #ccc;
+                
+            }
+            .btn:hover{
+                cursor: pointer;
+                color: #93e1d8;
+                background: #004385;
+            }
+            .btn:active{
+                border: 1px solid 
+            }
+            .result{
+                padding: 0 10px;
+                width: 250px;
+                height: 40px;
+                line-height: 40px;
+                margin: 2px auto;
+                border: 1px solid #004385;
+                border-radius: 5px;
+                box-shadow: 1px 1px 1px 1px #ccc;
+                text-align: right;
+            }
+        </style>
+    </head>
+    <body>
+        <div id='frame'>
+            <div class='row'>
+                <span class='btn'>0</span>
+                <span class='btn'>.</span>
+                <span class='btn'></span>
+                <span class='btn eql'>=</span>
+            </div>
+            <div class='row'>
+                <span class='btn'>1</span>
+                <span class='btn'>2</span>
+                <span class='btn'>3</span>
+                <span class='btn'>&times;</span>
+            </div>
+            <div class='row'>
+                <span class='btn'>4</span>
+                <span class='btn'>5</span>
+                <span class='btn'>6</span>
+                <span class='btn'>-</span>
+            </div>
+            <div class='row'>
+                <span class='btn'>7</span>
+                <span class='btn'>8</span>
+                <span class='btn'>9</span>
+                <span class='btn'>+</span>
+            </div>
+            <div class='row'>
+                <span class='btn'>AC</span>
+                <span class='btn'>&divide;</span>
+            </div>
+                
+            <div class='result'></div>
+        </div>
+
+    </body>
+
+    <script>
+        var btn = document.querySelectorAll('.btn')
+        var monitor = document.querySelector('.result')
+        let result = ''
+        for(var i=0; i<btn.length; i++){
+            let value = btn[i].innerText;
+            btn[i].addEventListener('click',()=>{
+                switch(value){
+                    case 'AC':
+                        result = ''
+                        print(result, monitor)
+                        break
+                    case '=':
+                        result = caculAnswer(result, monitor);
+                        print(result, monitor)
+                        break
+                    default:
+                        result += value
+                        print(result, monitor)
+                }
+            })
+        }
+
+        function print(result, monitor){
+            monitor.innerText = result
+        }
+
+        function caculAnswer(str, result){
+            let a = 0
+            let b = 0
+            for(var i=0; i<str.length; i++){
+                switch(str[i]){
+                    case '+': 
+                        a = str.slice(0,i)
+                        b = str.slice(i+1)
+                        return (parseFloat(a)+parseFloat(b))
+                    case '-': 
+                        a = str.slice(0,i)
+                        b = str.slice(i+1)
+                        return (parseFloat(a)-parseFloat(b))
+                    case '×': 
+                        a = str.slice(0,i)
+                        b = str.slice(i+1)
+                        return (parseFloat(a)*parseFloat(b))
+                    case '÷':                  
+                        a = str.slice(0,i)
+                        b = str.slice(i+1)
+                        return (parseFloat(a)/parseFloat(b))
+                }
+            }
+        }
+
+        
+
+
+    </script>
+</html>
