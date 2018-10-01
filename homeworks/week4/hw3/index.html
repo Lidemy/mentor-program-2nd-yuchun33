@@ -1,0 +1,183 @@
+<html>
+    <head>
+        <meta name='viewport' content='width=device-width, initial-scale=1'>
+        <meta charset='utf-8'>
+        <title>twitch API</title>
+
+        <style>
+            *{
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                
+            }
+            .nav{
+                position: fixed;
+                z-index: 1;
+                width: 100%;
+                height: 50px;
+                background-color: #4b367c
+            }
+            .aside{
+                position: fixed;
+                width: 18%;
+                height: 100%;
+                background-color: #322f37;
+            }
+            .container{
+                background-color: #faf9fa;
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
+                position: relative;
+                width: 82%;
+                top: 50px;
+                left: 18%;
+            }
+            .stream{
+                display: inline-block;
+                width: 30%;
+                background: coral;
+                margin: 10px;
+                background-color: white;
+            }
+            .stream__preview{
+                position: relative;
+                background: cornsilk;
+            }
+            .stream__channel{
+                position: relative;
+                background: white;
+                padding: 5px;
+                height: 60px;
+            }
+            .preview__img{
+                width: 100%;
+                display: block;
+            }
+
+            @media screen and (max-width: 900px){
+                .stream{
+                    width: 45%;
+                }
+            }
+
+            .live{
+                padding-left: 18px;
+                background: black;
+                opacity: 0.5;
+                color: white;
+                position: absolute;
+                top: 10px;
+                left: 10px;
+            }
+            .socute{
+                position: absolute;
+                top: 14px;
+                left: 12px;
+                display: inline-block;
+                width: 10px;
+                height: 10px;
+                border-radius: 50%;
+                background: red;
+            }
+            .viewer{
+                position: absolute;
+                color: white;
+                left: 10px;
+                top: 85%;
+            }
+
+            .stream__channel *{
+                position: absolute;
+                display: block; 
+            }
+            .logo{
+                width: 50px;
+            }
+            .channelStatus{
+                width: 80%;
+                text-overflow : ellipsis;
+                overflow: hidden;
+                white-space : nowrap;
+                top: 8px;
+                left: 65px;
+            }
+            .display_name{
+                left: 65px;
+                top: 35px;
+            }
+
+        </style>
+    </head>
+
+    <body>
+        <nav class='nav'></nav>
+        <aside class='aside'></aside>
+        <main class='container'></main>
+
+    </body>
+    <script>
+            var request = new XMLHttpRequest()
+            request.open('GET', 'https://api.twitch.tv/kraken/streams/?limit=20', true)
+            request.setRequestHeader('Client-ID', 'mm2jert97ez1atilw20sk32l7qgi8y')
+            request.setRequestHeader('Accept', 'application/vnd.twitchtv.v5+json')
+            request.send()
+            
+            request.onload = function(){
+                    if (request.status === 200) {
+                    let twitchDataset = JSON.parse(request.response) 
+                    useDataset(twitchDataset)                
+                }
+            }
+            
+            function useDataset(twitchDataset){
+                console.log(twitchDataset[0]);
+                
+                let container = document.querySelector('.container')
+                for(let i=0; i<20; i++){    
+                    let stream = makeElementwithName('div','stream')
+                    let stream__preview = makeElementwithName('div','stream__preview')
+                    let preview__img = makeElementwithName('img','preview__img')
+                    let socute = makeElementwithName('span','socute')
+                    let live = makeElementwithName('span','live')
+                    let viewer = makeElementwithName('span','viewer')
+                    let stream__channel = makeElementwithName('div','stream__channel')
+                    let logo = makeElementwithName('img','logo')
+                    let channelStatus = makeElementwithName('span','channelStatus')
+                    let display_name = makeElementwithName('span','display_name')
+                
+                    container.appendChild(stream)
+                    stream.appendChild(stream__preview)
+                    stream__preview.appendChild(live)
+                    stream__preview.appendChild(socute)
+                    stream__preview.appendChild(viewer)
+                    stream__preview.appendChild(preview__img)
+
+                    stream.appendChild(stream__channel)
+                    stream__channel.appendChild(logo)
+                    stream__channel.appendChild(display_name)
+                    stream__channel.appendChild(channelStatus)
+                    
+                    
+                    live.innerHTML = twitchDataset.streams[i].broadcast_platform
+                    viewer.innerHTML = parseInt(twitchDataset.streams[i].viewers).toLocaleString() + ' viewers'
+                    preview__img.src = twitchDataset.streams[i].preview.medium
+                    logo.src = twitchDataset.streams[i].channel.logo
+                    display_name.innerHTML = twitchDataset.streams[i].channel.display_name
+                    channelStatus.innerHTML = twitchDataset.streams[i].channel.status
+
+                } 
+            }
+
+            function makeElementwithName(type, name){
+                let element = document.createElement(type)
+                element.className = name
+                return element
+            }
+            
+            function connectData(container, content){
+                container.innerHTML = content
+            }
+        </script>    
+</html>
