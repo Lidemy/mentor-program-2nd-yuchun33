@@ -1,0 +1,240 @@
+<!DOCTYPE <!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Form</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        .banner{
+            background-color: lightseagreen;
+            width: 100%;
+            height: 40%;
+            position: absolute;
+            z-index: -1;
+        }
+        .footer{
+            padding: 50px;
+            width: 80%;
+            text-align: center;
+            position: relative;
+            top: 150px;
+            margin: 0 auto;
+            font-size: 28px;
+            color: lightsteelblue;
+
+        }
+        .container{
+            position: relative;
+            top: 120px;
+            background-color: white;
+            max-width: 650px;
+            border-top: 5px solid lightslategray;
+            padding: 20px ;
+            margin: 0 auto;
+            box-shadow: 1.8px 1.8px 3.5px 1px lightsteelblue;
+        }
+        @media screen and (max-width: 500px){
+            .banner{
+                height: 25%;
+            }
+            .container{
+                top: 80px;
+            }
+        }
+        @media screen and (max-width: 700px){
+            .container{
+                width: 80%;
+            }
+        }
+        @media screen and (min-width: 900px){
+            .banner{
+                height: 300px;
+            }
+        }
+        .header{
+            padding-left: 15px;
+        }
+        .header h1{
+            color: lightslategray;
+        }
+        .description{        
+            margin-top: 10px;    
+            font-size: 14px;
+            line-height: 1.8em;
+        }
+        .question{
+            padding: 20px 10px;
+            margin: 3px 0;
+            display: flex;
+            flex-direction: column;
+            font-size: 20px;
+            border-radius: 2px;
+        }
+        .question .example{
+            margin-top: 5px;
+            font-size: 14px;
+        }
+        .question input{
+            margin-top: 20px;
+            padding: 5px;
+            font-size: 16px;
+            border: none;
+            border-bottom: 1px solid gainsboro;
+            transition: border 0.3s ease-in;
+        }
+        input:focus{
+            border-bottom: 3px solid #db4437;
+        }
+
+        .invalid{
+            color: #db4437;
+            margin-top: 15px;
+            font-size: 16px;
+        }
+        .fieldset, 
+        .fieldset * {
+            margin: 0;
+            border: none;
+            padding: 0;
+        }
+        .radiochoose{
+            display: flex;
+            align-content: flex-start;
+            padding-left: 5px;
+            margin-top: 5px;
+        }
+        .radioinput{
+            position: relative;
+            width: 30px;
+        }
+        input[type='radio']{
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: scale(1.5) translate(-50%,-50%)
+
+        }
+        .radiolabel{
+            display: block;
+            width: 90%;
+            font-size: 16px;
+        }
+        .submit{
+            width: 80px;
+            height: 30px;
+            padding: 5px;
+            background-color: cornflowerblue;
+            border: none;
+            color: white;
+            border-radius: 3px;
+        }
+        .submit:hover{
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+<body>
+    <div class='background'>
+        <div class='banner'></div>
+        <div class='container'>
+            <header class='header'>
+                <h1>程式導師實驗計畫第二期報名表單</h1>
+                <div class='description'>
+                    <p>詳情請參考：<a href='https://medium.com/hulis-blog/mentor-program-s2-f876c4e13d3b' target='_blank'>>https://medium.com/hulis-blog/mentor-program-s2-f876c4e13d3b</a></p>
+                    <p>填完之後請務必按照文章內的說明再寄信給我，才算報名成功喔</p>
+                    <p class='star' style="color:red;">* 必填</p>
+                </div>
+            </header>
+            <form action='success.html'>
+                <div class='question'>
+                    <span>電子郵件地址<em style="color:red;">*</em></span>
+                    <input type="email" name='email' placeholder='你的電子郵件' required>
+                </div>
+                
+                <div class='question'>
+                    <span>暱稱<em style="color:red;">*</em></span>
+                    <input type="text"" name='nickname' placeholder='您的回答' required>
+                </div>
+                
+                <div class='question'>
+                    <fieldset class='fieldset'>
+                        <legend class='legend'>報名類型<em style="color:red;">*</em></legend>
+                        <div class='radiochoose'>
+                            <div class='radioinput'><input type='radio' id='beginner' name='class' value='beginner' required></div>
+                            <div class='radiolabel'><label for='beginner'>從零到一基礎班（一個月後開始收保證金 3000，淘汰不退還，結業後兩個月內找到工作付一個月半薪水，沒工作不用付）</label></div>
+                        </div>
+                        <div class='radiochoose'>
+                            <div class='radioinput'><input type='radio' id='engineer' name='class' value='engineer'></div>
+                            <div class='radiolabel'><label for='engineer'>在職工程師加強班（一個月後開始收保證金 3000，兩個月時收學費 30000，被淘汰不退還）</label></div>
+                        </div>
+                    </fieldset>
+                </div>
+
+                <div class='question'>
+                    <span>現在的職業<em style="color:red;">*</em></span>
+                    <span class='example'>範例：學生、前端工程師、待業中、業務</span>
+                    <input type="text"" name='job' placeholder='您的回答' required>
+                </div>
+                
+                <div class='question'>
+                    <span>是否有程式相關背景？<em style="color:red;">*</em></span>
+                    <span class='example'>範例：無、高中時候學過C++、學過一點網頁前端、目前在資策會上課...</span>
+                    <input type="text" name='background' placeholder='您的回答' required>
+                </div>
+                
+                <div class='question'>
+                    <span>其他</span>
+                    <span class='example'>任何你想說的</span>
+                    <input type="text"" name='other' placeholder='您的回答'>
+                </div>
+
+                <input class='submit' type="submit" name='submit' value="提交" onclick=check()>
+                
+            </form>
+        </div>
+        <footer class='footer'>
+            FAKE 表單
+        </footer>
+        
+
+
+
+    </div>
+</body>
+<script>
+    function check(){
+        var input = document.querySelectorAll('input')
+        for(var i=0; i<input.length; i++){
+            if(input[i].type=='radio'){
+                var fieldset = document.querySelector('.fieldset')
+                fieldset.parentElement.style.backgroundColor='rgb(255,182,193,0.4)'
+                fieldset.appendChild(Invalid())
+                i++
+            }
+            else if(!input[i].checkValidity()){
+                input[i].parentElement.style.backgroundColor='rgb(255,182,193,0.4)'
+                input[i].parentElement.appendChild(Invalid())
+            }
+        }
+    }
+
+    function Invalid(){
+        var invalid = document.createElement('div')
+        invalid.className = 'invalid'
+        invalid.innerText = '這是必填問題'
+        return invalid
+    }
+</script>
+</html>
