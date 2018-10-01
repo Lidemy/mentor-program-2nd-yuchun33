@@ -116,6 +116,8 @@
             width: 30px;
         }
         input[type='radio']{
+            border: none;
+            border-bottom: 1px solid gray;
             margin: 0;
             padding: 0;
             text-align: center;
@@ -161,6 +163,7 @@
                 <div class='question'>
                     <span>電子郵件地址<em style="color:red;">*</em></span>
                     <input type="email" name='email' placeholder='你的電子郵件' required>
+                    
                 </div>
                 
                 <div class='question'>
@@ -215,17 +218,23 @@
 </body>
 <script>
     function check(){
+        var invalid = document.querySelectorAll('.invalid')
+        for (var i=0; i<invalid.length; i++){
+            invalid[i].remove();
+        }
         var input = document.querySelectorAll('input')
         for(var i=0; i<input.length; i++){
-            if(input[i].type=='radio'){
-                var fieldset = document.querySelector('.fieldset')
-                fieldset.parentElement.style.backgroundColor='rgb(255,182,193,0.4)'
-                fieldset.appendChild(Invalid())
-                i++
-            }
-            else if(!input[i].checkValidity()){
-                input[i].parentElement.style.backgroundColor='rgb(255,182,193,0.4)'
-                input[i].parentElement.appendChild(Invalid())
+            if(!input[i].checkValidity()){
+                if(input[i].type=='radio'){
+                    var fieldset = document.querySelector('.fieldset')
+                    fieldset.parentElement.style.backgroundColor='rgb(255,182,193,0.4)'
+                    fieldset.parentElement.appendChild(Invalid())
+                    i++
+                }
+                else{
+                    input[i].parentElement.style.backgroundColor='rgb(255,182,193,0.4)'
+                    input[i].parentElement.appendChild(Invalid())
+                }
             }
         }
     }
