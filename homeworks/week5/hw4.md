@@ -1,12 +1,12 @@
 ## 資料庫欄位型態 VARCHAR 跟 TEXT 的差別是什麼
-
-
+- VARCHAR 須設定長度 ，TEXT 不用（即使設定也沒有作用）
 
 ## Cookie 是什麼？在 HTTP 這一層要怎麼設定 Cookie，瀏覽器又會以什麼形式帶去 Server？
-
-
-
+- 可用通行證來比喻，會存在瀏覽器內，所以每當重新向網站請求 request 時，瀏覽器會自動把 cookie 補到 Request Header ， server 就可以針對不同的 user 給回應。
+- 第一次造訪網站時，server 會把 cookie 存在 response header。
+- [參考](http://www.admin10000.com/document/7097.html)
 
 ## 我們本週實作的會員系統，你能夠想到什麼潛在的問題嗎？
-
+- cookie 是存在瀏覽器內，所以其他人似乎是可以取得 cookie 的，在時效為到期之前，可以用別人的 cookie 登入。
+- 雖然是設定登入後才會轉換到留言板頁，但如果直接輸入留言板的位址也可以進入留言版留言（或者是我沒寫對）
 
