@@ -124,7 +124,15 @@
     </style>
 </head>
 
+<script>
+    function checkDelete(a,b){
+        alert(a);
+
+    }
+</script>
+
 <body>
+    <input type='button' id='delete{$row['ID']}' name='delete' value='刪除' onclick='checkDelete("GGG","HHH")'>
     <div class='navbar'>
         <span class='member'>Hello, <?php echo $_COOKIE['cookie'] ?> </span>
         <form action='logout.php'>
