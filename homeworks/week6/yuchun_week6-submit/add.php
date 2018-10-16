@@ -10,7 +10,7 @@
     $parent = $_POST['parent'];
     echo  $parent;
 
-
+/*
     if($parent == 0){
         $table = 'yuchun_board';
     }
@@ -27,15 +27,22 @@
             parent int,
             PRIMARY KEY (ID))';
     echo $sql;
+
+    
     if($conn->query($sql)===TRUE){
         //echo 'Table ' . $table . ' created successfully' . '<br>';
     } else {
         echo 'error creating table: ' . $conn->error . '<br>';
     }
+*/
 
-    $sql = "INSERT INTO " . $table . " (user, content, timestamp, parent) VALUES ('{$username}','{$content}','{$timestamp}',{$parent})";
+    $table = 'yuchun_board';
+    $sql = "INSERT INTO $table (user, content, timestamp, parent) VALUES ('{$username}','{$content}','{$timestamp}',{$parent})";
+    //$sql = "INSERT INTO "
+    
+    
     if($conn->query($sql)===TRUE){
-        //echo 'New record created successfully' . '<br>';
+        echo 'New record created successfully' . '<br>';
     } else {
         echo $sql . '<br>';
         echo 'error creating record: ' . $conn->error . '<br>';
