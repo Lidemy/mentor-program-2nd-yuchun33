@@ -9,6 +9,7 @@
 
 <!--發布新留言-->
 <body>
+    hihihi
     <div class='navbar'>
         <span class='user'>Hello, <?php echo $_COOKIE['cookie'] ?> </span>
         <form action='./logout.php'>
@@ -247,3 +248,21 @@
 //})
 
 </script>
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    }
+?>
+

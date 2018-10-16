@@ -1,177 +1,13 @@
-<!DOCTYPE <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8">
     <title>Page Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <style>
-        body{
-            box-sizing: border-box;
-        }
-        body *{
-            
-            box-sizing: border-box;
-            font-size: 16px;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        .post,
-        .newpost{
-            background: white;
-            opcacity: 50%;
-        }
-        .newpost{
-            width: 500px;
-            display: flex;
-            margin: 20 auto;
-            box-shadow: 0.5px 0.5px 2px 1px grey;
-        }
-        .newpost > .avater{
-            width: 30px;
-            height: 30px;
-            border-radius: 30px;
-            display: float;
-            margin: 10px;
-            background: pink;
-        }
-        .newpost textarea{
-            width: 430px;
-            border: 0;
-            padding: 10px;
-        }
-        .newpost input[type='submit']{
-            position: relative;
-            left: 350px;
-            height: 30px;
-            width: 80px;
-            color: white;
-            background-color: #3b5998;
-            border: 0;
-        }
-        .post{
-            padding: 10px;
-            width: 500px;
-            box-shadow: 0.5px 0.5px 2px 1px grey;
-            margin: 10px auto;
-        }
-        .main{
-            border-bottom: 1px solid gainsboro;
-            margin-bottom: 30px;
-            padding: 5px;
-            position: relative;
-        }
-        .avater{
-            width: 40px;
-            height: 40px;
-            border-radius: 40px;
-            margin-right: 5px;
-            background-color: #3b5998;
-        }
-        .sub{
-            padding: 5px;
-            position: relative;
-        }
-        .info{
-            display: flex;
-            align-items: center;
-        }
-        .sub .avater{
-            width: 30px;
-            height: 30px;
-            border-radius: 30px;
-        }
-        .idandcontent{
-            border-radius: 15px;
-            background-color: aliceblue;
-            padding: 8px;
-            position: relative;
-        }
-        .idandcontent *{
-            display: inline-block;
-        }
-        .main__id,
-        .sub__id{
-            color: #3b5998;
-            font-weight: 600px;
-        }
-        .main__timestamp,
-        .sub__timestamp{
-            color: grey;
-            font-size: 12px;
-        }
-        .sub__timestamp{
-            position: relative;
-            left: 40px;
-        }
-        .addpost{
-            padding: 5px;
-            display: flex;
-            align-items: center;
-            margin-top: 10px;    
-        }
-        .addpost input[type='text']{
-            padding: 3px;
-            border: 0;
-            border: 1px solid gainsboro;
-            box-shadow: 0px 0.5px 0.5px 0.5px gainsboro;
-            border-radius: 8px;
-            width: 450px;
-        }
-        .addpost > .avater{
-            width: 30px;
-            height: 30px;
-            border-radius: 30px;
-            background: pink;
-        }
-        .subs{
-            border-top: 1px solid gainsboro;
-        }
-        .main__content{
-            margin: 10px 0 10px 0;
-        }
-        .navbar{
-            display: flex;
-            justify-content: flex-end;
-            align-items: center;
-        }
-        .user{
-            color: #3b5998;
-            font-size: 22px;
-            margin-right: 6px;
-        }
-        .navbar input[type='submit']{
-            border: 0;
-            position: relative;
-            top: 8px;
-            padding: 5px;
-        }
-        .page{
-            width: 300px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: center;
-        }
-        .memberfunction{
-            width: 88px;
-            position: absolute;
-            right: 5px;
-            top: 5px;
-
-        }
-        .memberfunction input{
-            font-size: 14px;
-            width: 40px;
-            border-radius: 3px;
-        }
-
-
-
-    </style>
-
-<script>
-
-</script>    
+    <link rel="stylesheet" type="text/css" href="./style.css">
 </head>
 
+<!--發布新留言-->
 <body>
     <div class='navbar'>
         <span class='user'>Hello, <?php echo $_COOKIE['cookie'] ?> </span>
@@ -189,7 +25,9 @@
         </form>
     </div>
 
-    <div class=container>
+    <div class='container'>
+
+<!--主留言-->
 <?php
     require('./connect.php');
     $page = 1;
@@ -198,123 +36,139 @@
     }else{
         $page = 1;
     };
+
+    $mainTable = "yuchun_board";
+
     $sql = "show variables like '%time_zone%'";
     $conn->query($sql);
     $init = ($page-1)*10;
-    $sql = 'SELECT * FROM yuchun_board ORDER BY timestamp DESC LIMIT ' .$init . ',10';
+    $sql = "SELECT * FROM $mainTable WHERE parent='0' ORDER BY timestamp DESC LIMIT " .$init . ',10';
     $result = $conn->query($sql);
-    if($result->num_rows>0){
-        while($row = $result->fetch_assoc()){
-            echo"
-                <div class='post'>
-                <div class='main'>
-                    <div class='info'>
-                        <div class='avater'></div>
-                        <div class='idandtime'>
-                            <div class='main__id'>{$row['user']}</div>
-                            <div class='main__timestamp'>{$row['timestamp']}</div>
-                            <div>{$row['ID']}</div>";
-            echo "</div>";
-            echo "</div>";
-
-            //刪除及編輯
-            if($row['user']==$_COOKIE['cookie']){
-                echo "<div class='memberfunction'>";
-                echo "<input type='button' id='delete{$row['ID']}' name='delete' value='刪除' onclick='checkDelete({$row['ID']},\"yuchun_board\")'>";
-                echo "<input type='button' id='update{$row['ID']}' name='update' value='編輯' onclick='updateMessage({$row['ID']},\"yuchun_board\")'>";
-                echo "</div>";
-            } 
-            
-            //編輯框
-            echo "<div class='edityuchun_board{$row['ID']}' style='display:none'>
-                <form method='POST' action='./update.php'>
-                <input type='hidden' name='updateID' value='{$row['ID']}' >
-                <input type='hidden' name='tableName' value='yuchun_board' >
-                <input type='text' name='updateContent'>
-                <input type='submit' value='送出'>
-                </form>
-                </div>";
-
-            echo "<div class='main__content'>";
-            echo htmlspecialchars($row['content']);
-            echo "</div>
-                </div>";
-            addChildMessage($conn,$row['ID']);          
-        }
+    if(!$result){
+        echo $conn->error;
+        echo $sql;
     }
 
-    
+    if($result->num_rows>0){
+        while($row = $result->fetch_assoc()){
 ?>
-</div>
+        <div class='post'>
+            <div class='main'>
+                <div class='info'>
+                    <div class='avater'></div>
+                    <div class='idandtime'>
+                        <div class='main__id'><?php echo $row['user']?></div>
+                        <div class='main__timestamp'><?php echo $row['timestamp']?></div>
+                        <div><?php echo $row['ID']?></div>
+            </div>
+        </div>
+<!--使用者可編輯和刪除-->
+<?php
+        if($row['user']==$_COOKIE['cookie']){      
+            echo "<div class='memberfunction'>";
+            echo "<input type='button' id='delete{$row['ID']}' name='delete' value='刪除' onclick='checkDelete({$row['ID']},\"{$mainTable}\")'>";
+            echo "<input type='button' id='update{$row['ID']}' name='update' value='編輯' onclick='updateMessage({$row['ID']},\"{$mainTable}\")'>";
+            echo "</div>";
+        }
+?> 
+        <div class='edit<?php echo $mainTable.$row['ID']?>' style='display:none'>
+            <form method='POST' action='./update.php'>
+                <input type='hidden' name='updateID' value='<?php echo $row['ID']?>'>
+                <input type='hidden' name='tableName' value='<?php echo $mainTable?>' >
+                <input type='text' name='updateContent'>
+                <input type='submit' value='送出'>
+            </form>
+            </div>
+        <div class='main__content'>        
+<?php
+        echo htmlspecialchars($row['content']);
+?>
+        </div>
+        </div>
+<?php
+        addChildMessage($conn,$row['ID'],$mainTable); 
+        }
+    }
+?>
+
 
 <?php
-    function addChildMessage($conn,$parent){
+    function addChildMessage($conn,$parent,$mainTable){
         echo "<div class='subs'>";
-        $subsql = 'SELECT * FROM yuchun_board'.$parent.' ORDER BY timestamp DESC';
+        $subTable = "yuchun_board";
+        $subsql = "SELECT * FROM $subTable WHERE parent=$parent ORDER BY timestamp DESC";
         if ($result = $conn->query($subsql)){
             if($result->num_rows>0){
                 while($row = $result->fetch_assoc()){
-        echo"
+?>
         <div class='sub'>
             <div class='info'>
                 <div class='avater'></div>
                 <span class='idandcontent'>
-                    <div class='sub__id'>{$row['user']}</div>
-                    <div class='sub__content'>";
-        echo htmlspecialchars($row['content']);
-        echo "</div>
-                </span>";
-        echo"
-        </div>
-            <span class='sub__timestamp'>{$row['timestamp']}</span>";
-        if($row['user']==$_COOKIE['cookie']){
-            echo "<div class='memberfunction'>";
-            echo "<input type='button' value='刪除' onclick='checkDelete({$row['ID']},\"yuchun_board\"+{$parent})'>";
-            echo "<input type='button' id='update{$row['ID']}' name='update' value='編輯' onclick='updateMessage({$row['ID']},\"yuchun_board\"+{$parent})'>";
-            echo "</div>";
-        }
-        
-        //編輯框
-        echo "<div class='edityuchun_board{$parent}{$row['ID']}' style='display:none'>
-        <form method='POST' action='./update.php'>
-        <input type='hidden' name='updateID' value='{$row['ID']}'>
-        <input type='hidden' name='tableName' value='yuchun_board{$parent}'>
-        <input type='text' name='updateContent'>
-        <input type='submit' value='送出'>
-        </form>
-        </div>";
-        echo "</div>";
-
-        }
-            }    
-        }
-?>
-        </div>
+                    <div class='sub__id'><?php echo $row['user']?></div>
+                    <div class='sub__content'>
 
 <?php
-        //留言者
-        $sql = "SELECT user FROM yuchun_board WHERE ID={$parent}";
+        echo htmlspecialchars($row['content']);
+?>
+        </div>
+            </span>
+        </div>
+            <span class='sub__timestamp'><?php echo $row['timestamp']?></span>
+<?php
+        if($row['user']==$_COOKIE['cookie']){
+            echo "<div class='memberfunction'>";
+            echo "<input type='button' value='刪除' onclick='checkDelete({$row['ID']},\"Board\"+{$parent})'>";
+            echo "<input type='button' id='update{$row['ID']}' name='update' value='編輯' onclick='updateMessage({$row['ID']},\"Board\"+{$parent})'>";
+            echo "</div>";
+            }
+?>
+<!--編輯框-->
+    <div class='edit<?php echo $subTable.$row['ID']?>' style='display:none'>
+        <form method='POST' action='./update.php'>
+            <input type='hidden' name='updateID' value='<?php echo$row['ID']?>'>
+            <input type='hidden' name='tableName' value='<?php echo$subTable?>'>
+            <input type='text' name='updateContent'>
+            <input type='submit' value='送出'>
+        </form>
+    </div>
+    </div>
+
+<?php
+            }        
+        }  
+    }
+    
+?>
+    </div>
+<!--留言框-->
+<?php
+        $sql = "SELECT user FROM {$mainTable} WHERE ID={$parent}";
         $result = $conn->query($sql);
         $row = $result->fetch_assoc();
-
-        echo "<form method='POST' action='./add.php'>
-                <div class='addpost'>
-                    <div class='avater'></div>
-                    <input type='text' name='content' placeholder='留言' oninput='detectUser(\"{$row['user']}\",\"{$_COOKIE['cookie']}\")'>
-                    <input type='text' name='parent' value={$parent} style='display:none'>
-                    <input type='submit' value='送出' style='display:none'>
-                </div>
-            </form></div>";
-        
-    }
 ?>
-
+        <form method='POST' action='./add.php'>
+            <div class='addpost addpost<?php echo $parent?>'>
+                <div class='avater'></div>
+<?php
+            echo "<input type='text' name='content' placeholder='留言' oninput='detectUser({$parent},\"{$row['user']}\",\"{$_COOKIE['cookie']}\")'>";
+?>
+                <input type='text' name='parent' value='<?php echo $parent?>' style='display:none'>
+                <input type='submit' value='送出' style='display:none'>
+            </div>
+        </form></div>
+<?php    
+    }
+?>    
+    
 </div>
 </body>
 
+
+<!--換頁-->
 <div class='page'>
 <?php
-    $query = "SELECT COUNT(*) c FROM yuchun_board";
+    $query = "SELECT COUNT(*) c FROM $mainTable";
     $result = $conn->query($query);
     $row = mysqli_fetch_assoc($result);
     $devide = $row['c']/10+1;
@@ -326,17 +180,19 @@
 <div>
 
 </body>
+</html>
 
+<!--Function-->
 <script>
     function express(value){
         location.href="./memberBoard.php?page="+value;
     }
 
     //Q 刪除輸入背景變不回去
-    function detectUser(user,cookie){
+    function detectUser(ID,user,cookie){
         if (user==cookie){
-            var b = document.querySelector('body')
-            b.style.background = '#4d5061'
+            var b = document.querySelector('.addpost'+ID)
+            b.parentElement.parentElement.style.background = '#4d5061'
         }
         else{
             var b = document.querySelector('body')

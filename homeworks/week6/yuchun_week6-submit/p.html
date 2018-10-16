@@ -1,0 +1,61 @@
+<!DOCTYPE <!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</html>
+  
+<style>
+    .memberfunction{
+        width: 100px;
+        border: 5px solid pink;
+        postion: absolute;
+        left: 100px;
+
+    }
+</style>
+
+<div class='subs'>
+    <div class='sub'>
+        <div class='info'>
+            <div class='avater'></div>
+            <span class='idandcontent'>
+                <div class='sub__id'>{$row['user']}</div>
+                <div class='sub__content'></div>
+            </span>
+        </div>
+        <span class='sub__timestamp'>{$row['timestamp']}</span>
+        <div class='memberfunction'>
+            <input type='button' value='刪除'>
+            <input type='button' id='update{$row['ID']}' name='update' value='編輯' onclick=''>
+        </div>
+    </div>
+</div>
+
+
+<div class='post'>
+    <div class='main'>
+        <div class='info'>
+            <div class='avater'></div>
+            <div class='idandtime'>
+                <div class='main__id'>{$row['user']}</div>
+                <div class='main__timestamp'>{$row['timestamp']}</div>
+                <div>{$row['ID']}</div>
+            </div>
+        </div>
+        <span class='memberfunction'>
+            <input type='button' id='delete{$row['ID']}' name='delete' value='刪除' onclick='checkDelete({$row['ID']},\"Board\")'>
+            <input type='button' id='update{$row['ID']}' name='update' value='編輯' onclick='updateMessage({$row['ID']},\"Board\")'>
+        </span>
+        <div class='main__content'>
+        <form method='POST' action='./update.php'>
+            <input type='text' name='updateID' value={$row['ID']}, type='hidden'>
+            <input type='text' name='tableName' value='board', type='hidden'>
+            <input type='text' name='updateContent'>
+            <input type='submit' value='送出'>
+        </form>
+    </div>
+</div>
+
