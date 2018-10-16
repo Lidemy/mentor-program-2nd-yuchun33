@@ -21,7 +21,7 @@
     if($result->num_rows>0){
         while($row = $result->fetch_assoc()){
             if(password_verify($password,$row['password'])){ //驗證密碼
-                setcookie('cookie', $row['nickname'], time()+3600*24);
+                setcookie('cookie', $row['nickname'], time()+3600*24); //不是設兩個，是只要設 server 給的
                 addVertifyCookie($username,$certificateTable);
                 $url = './memberBoard.php';
                 header("Location: $url");
