@@ -3,11 +3,15 @@
 
     $updateID = $_POST['updateID'];
     $updateContent = $_POST['updateContent'];
-    $tableName = $_POST['tableName'];
+    
+    
     
     //$sql = "UPDATE {$tableName} SET content='{$updateContent}' WHERE ID={$updateID}";
     //echo $sql;
     //$conn->query($sql);
+
+    //移除 hidden 的 $tablename，使用者端無法改變資料庫結構
+    $tableName = "yuchun_board";
 
     $sql = "UPDATE $tableName SET content=? WHERE ID=?";
     $stmt = $conn->prepare($sql);

@@ -6,7 +6,7 @@
     $doublecheckpassword = $_POST['doublecheckpassword'];
     $nickname = $_POST['nickname'];
     $table = 'yuchun_hashusers';
-    
+
     if(!$password==$doublecheckpassword){
 ?>
     <script>
@@ -35,7 +35,7 @@
     </script>
 <?php
     }else{
-        $hashPassword = password_hash($password, PASSWORD_DEFAULT);
+        $hashPassword = password_hash($password, PASSWORD_DEFAULT);//增加密碼
         //$sql = "INSERT INTO $table ( user, password ) VALUES ('$username', '$hashPassword')";
         //$conn->query($sql);
         //echo $conn->error;
@@ -46,7 +46,7 @@
         $stmt->bind_param("sss",$user,$hashPassword,$nickname);
         $stmt->execute();
 
-        //增加雜湊密碼
+        
         $sql = "INSERT INTO $certificateTable (user, certificate) VALUES (?,?)";
         $cerificate = md5(uniqid(rand(), true));
         $stmt = $conn->prepare($sql);

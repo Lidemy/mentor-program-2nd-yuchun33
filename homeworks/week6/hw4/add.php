@@ -36,6 +36,7 @@
     }
 */
 
+    //訂正為同一個表格，使用者端無法影響資料庫結構
     $table = 'yuchun_board';
     $sql = "INSERT INTO $table (user, content, timestamp, parent) VALUES ('{$username}','{$content}','{$timestamp}',{$parent})";
     //$sql = "INSERT INTO "
