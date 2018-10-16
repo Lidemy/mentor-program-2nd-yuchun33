@@ -166,7 +166,8 @@
     $sql = 'SELECT * FROM Board ORDER BY timestamp DESC';
     $result = $conn->query($sql);
     if($result->num_rows>0){
-        while($row = $result->fetch_assoc()){            
+        while($row = $result->fetch_assoc()){
+            echo $_COOKIE['cookie'];            
             echo"
                 <div class='post'>
                 <div class='main'>
@@ -179,6 +180,10 @@
                     </div>
                     <div class='main__content'>{$row['content']}</div>
                 </div>";
+                echo $_COOKIE['cookie'];
+            if($row['user']==$_COOKIE['cookie']){
+                echo $_COOKIE['cookie'];
+            }
             addChildMessage($conn,$row['ID']);
 
             
@@ -206,6 +211,9 @@
                             </div>
                             <span class='sub__timestamp'>{$row['timestamp']}</span>
                         </div>";
+                    if($row['user']==$_COOKIE['cookie']){
+                        echo "刪除留言";
+                    }
                 }
             }    
         }
