@@ -10,8 +10,9 @@
 </head>
 
 <script>
+//---------------------------------不換頁---------------------------------
 $(function(){
-    //更新留言內容
+    //-------------更新留言內容-------------
     $('body').on('submit','.updateForm',function(event){
         $.ajax({
             url:"./update.php",
@@ -34,7 +35,7 @@ $(function(){
         event.preventDefault()
     })
 
-    //新增主留言
+    //-------------新增主留言-------------
     $('.mainForm').on('submit',function(event){
         $.ajax({
             url:"./add.php",
@@ -96,7 +97,7 @@ $(function(){
         event.preventDefault()
     })
 
-    //新增子留言
+    //-------------新增子留言-------------
     $('body').on('submit','.addForm',function(event){
         $.ajax({
             url:"./add.php",
@@ -147,14 +148,12 @@ $(function(){
         })
         event.preventDefault()
     })
-    
 })
 </script>
 
-<!--發布新留言-->
 <body>
     <nav class='navbar navbar-light bg-light'>
-    <!--有登入才可以留言-->
+<!---------------------------------------------------有登入才可以留言--------------------------------------------------->
     <?php if(isset($_COOKIE['cookie'])){
     ?>
         <span class='user'>Hello,
@@ -171,8 +170,7 @@ $(function(){
     }
     ?>
     </nav>
-
-
+<!---------------------------------------------------發布新留言--------------------------------------------------->
     <div class='container'>
         <div class='newpost'>
             <div class='avater'></div>
@@ -184,8 +182,9 @@ $(function(){
             </form>
         </div>
 
-<!--主留言-->
+
 <?php
+//---------------------------------------------------連接資料庫，篩選資料---------------------------------------------------
     require('./connect.php');
     $page = 1;
     if(isset($_GET['page'])){
@@ -208,6 +207,7 @@ $(function(){
     if($result->num_rows>0){
         while($row = $result->fetch_assoc()){
 ?>
+<!---------------------------------------------------主留言--------------------------------------------------->
         <div class='post'>
             <div class='main'>
                 <div class='info'>
@@ -217,9 +217,7 @@ $(function(){
                         <div class='main__timestamp'><?php echo $row['timestamp']?></div>
                     </div>
                 </div>
-
-
-<!--使用者可編輯和刪除-->
+<!---------------------------------------------------使用者可編輯和刪除--------------------------------------------------->
 <?php 
         if(isset($_COOKIE['cookie'])){
             if($row['user']==$_COOKIE['cookie']){
@@ -232,11 +230,9 @@ $(function(){
                 </div>
 <?php
             }
-        } 
-            
+        }    
 ?>
-<!--主留言編輯框-->            
-
+<!---------------------------------------------------主留言編輯框--------------------------------------------------->            
             <div class='main__content'>
 <?php
         echo htmlspecialchars($row['content']);
@@ -256,8 +252,7 @@ $(function(){
     } 
 ?>
 </div>
-
-<!--子留言-->
+<!---------------------------------------------------子留言-------------------------------------------------->
 <?php
     function addChildMessage($conn,$parent,$mainTable){
 ?>
@@ -283,7 +278,8 @@ $(function(){
             </span>
         </div>
             <span class='sub__timestamp'><?php echo $row['timestamp']?></span>
-<?php            
+<?php
+//---------------------------------------------------刪除編輯按鈕---------------------------------------------------            
     if(isset($_COOKIE['cookie'])){
         if($row['user']==$_COOKIE['cookie']){
             echo "<div class='memberfunction'>";
@@ -291,10 +287,9 @@ $(function(){
             echo "<input class='update{$row['ID']}' type='button'  name='update' value='編輯' onclick='updateMessage({$row['ID']})'>";
             echo "</div>";
         }
-    }
-        
+    } 
 ?>
-<!--編輯框-->
+<!---------------------------------------------------編輯框--------------------------------------------------->
     <div class='edit<?php echo $row['ID']?>' style='display:none'>
         <form class='updateForm form-inline'>
             <input type='hidden' name='updateID' value='<?php echo$row['ID']?>'>
@@ -303,15 +298,13 @@ $(function(){
         </form>
     </div>
     </div>
-
 <?php
         }
             }    
         }
 ?>
         </div>
-
-<!--留言框-->
+<!---------------------------------------------------留言框--------------------------------------------------->
 <?php
     if(isset($_COOKIE['cookie'])){
         $sql = "SELECT user FROM {$mainTable} WHERE ID={$parent}";
@@ -332,12 +325,9 @@ $(function(){
     }    
     echo "</div>";
     }
-    
 ?>
-
 </div>
-
-<!--換頁-->
+<!---------------------------------------------------換頁--------------------------------------------------->
 <div class='page'>
 <?php
     $query = "SELECT COUNT(*) c FROM $mainTable";
@@ -347,11 +337,10 @@ $(function(){
     for($i=1; $i<(int)$devide+1; $i++){
         echo "<input type='button' class='btn btn-light' value='$i' onclick='express($i)'>";
     }
-
 ?>
 <div>
 
-<!--Function-->
+<!---------------------------------------------------Function--------------------------------------------------->
 <script>
     function express(value){
         location.href="./memberBoard.php?page="+value;
@@ -368,7 +357,7 @@ $(function(){
             b.style.background = 'white'
         }
     }
-
+//---------------------------------------------------更新留言後隱藏---------------------------------------------------
     function updateMessage(ID){
         var c = document.querySelector('.edit'+ID)
         if (c.style.display === "none") {
@@ -377,8 +366,7 @@ $(function(){
             c.style.display = "none";
         }
     }
-
-    //刪除留言的function
+//---------------------------------------------------刪除留言的function---------------------------------------------------
     function checkDelete(ID){
         if(confirm('你確定要刪除留言?')){
             alert('你已刪除留言')
@@ -397,6 +385,7 @@ $(function(){
             var b = document.querySelector('body')
             b.appendChild(f)
             
+    //-----------------------不換頁--------------------
             $.ajax({
                 url:"./delete.php",
                 method:"POST",
@@ -406,7 +395,6 @@ $(function(){
                 success:function(){        
                     console.log(ID);
                     console.log($('.delete'+ID).parent()); // ajax 新增的無法取得物件
-                                
                     if($('.delete'+ID).parent().parent()[0].className=="main"){
                         $('.delete'+ID).closest('.post').css("display","none");
                         
