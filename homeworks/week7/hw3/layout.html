@@ -1,0 +1,99 @@
+<body>
+<div class='navbar'>
+    <span class='user'>Hello, 
+    </span>
+    <form action='./logout.php'>
+        <input type='submit' value='logout'>
+    </form>
+</div>
+
+
+<div class='container'>
+    <div class='newpost'>
+        <div class='avater'></div>
+        <form class='form1'>
+            <!--<input type='text' name='nickname' placeholder="暱稱">-->
+            <textarea name='content' placeholder='在想些什麼？' required></textarea>
+            <input type='text' name='parent' value='0', style="display:none">
+            <input type='submit' value='發佈'>
+        </form>
+    </div>
+    <!--主留言-->
+    <div class='post'>
+        <div class='main'>
+            <div class='info'>
+                <div class='avater'></div>
+                <div class='idandtime'>
+                    <div class='main__id'><?php echo $row['user']?></div>
+                    <div class='main__timestamp'><?php echo $row['timestamp']?></div>
+                </div>
+            </div>
+
+            <div class='memberfunction'>
+                <input type='button' class='delete{$row['ID']}' name='delete' value='刪除' onclick='checkDelete({$row['ID']},\"{$mainTable}\")'>
+                <input type='button' class='update{$row['ID']}' name='update' value='編輯' onclick='updateMessage({$row['ID']},\"{$mainTable}\")'>
+            </div>
+
+    <!--主留言編輯框-->            
+            <div class='edit<?php echo $mainTable.$row['ID']?>' style='display:none'>
+                <form method='POST' action='./update.php'>
+                    <input type='hidden' name='updateID' value='<?php echo $row['ID']?>'>
+                    <input type='text' name='updateContent'>
+                    <input type='submit' value='送出'>
+                </form>
+            </div>
+
+            <div class='main__content'>echo htmlspecialchars($row['content']);</div>
+        </div>
+
+    <!--子留言--> 
+        <div class='subs'>
+            <div class='sub'>
+                <div class='info'>
+                    <div class='avater'></div>
+                    <span class='idandcontent'>
+                        <div class='sub__id'><?php echo $row['user']?></div>
+                        <div class='sub__content'>echo htmlspecialchars($row['content']);</div>
+                    </span>
+                </div>
+
+                <span class='sub__timestamp'><?php echo $row['timestamp']?></span>
+
+                <div class='memberfunction'>
+                    <input type='button' value='刪除' onclick='checkDelete({$row['ID']},\"{$subTable}\")'>
+                    <input type='button' id='update{$row['ID']}' name='update' value='編輯' onclick='updateMessage({$row['ID']},\"{$subTable}\")'>
+                </div>            
+
+                <!--編輯框-->
+                <div class='edit<?php echo $subTable.$row['ID']?>' style='display:none'>
+                    <form name='updateForm' method='POST' action='./update.php'>
+                        <input type='hidden' name='updateID' value='<?php echo$row['ID']?>
+                        <input type='text' name='updateContent'>
+                        <input type='submit' value='送出'>
+                    </form>
+                </div>
+            </div>        
+        </div>
+    
+    <!--留言框-->
+        <form method='POST' action='./add.php'>
+            <div class='addpost addpost<?php echo $parent?>'>
+                <div class='avater'></div>
+                <input type='text' name='content' placeholder='留言' oninput='detectUser({$parent},\"{$row['user']}\",\"{$_COOKIE['cookie']}\")'>
+                <input type='text' name='parent' value='<?php echo $parent?>' style='display:none'>
+                <input type='submit' value='送出' style='display:none'>
+            </div>
+        </form>
+    </div>
+
+
+</div>
+
+</body>
+
+<!--換頁-->
+<div class='page'>
+    <input type='button' value='$i' onclick='express($i)'>
+</div>
+
+</body>
