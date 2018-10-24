@@ -5,8 +5,8 @@
 > 網格系統把畫面切割為 12 或 16 欄，是比較好整除為 3、4 欄，對畫面的排版較方便。在操作 RWD 的時候，利用網格系統提供設定好的欄寬，可以讓畫面在縮放的時候仍然可以維持比例。
 
 ## 請找出任何一個與 Bootstrap 類似的 library
-> Semantic UI，特色為更有語意的命名，也有不同主題，但 Bootstrap 的功能仍較豐富（滑頁）。  
-> Semantic UI 的文件設計比較多元（？），也提供常見的社群分享 icon  
+> - Semantic UI，特色為更有語意的命名，也有不同主題，但 Bootstrap 的功能仍較豐富（滑頁）。  
+> - Semantic UI 的文件設計比較多元（？），也提供常見的社群分享 icon  
 > Semantic UI 的命名沒有連字號，Bootstrap 有（不太確定 Semantic UI 的設計是不是可以讓設定 class 名稱更彈性，要再試用看看）  
 
 ## jQuery 是什麼？
