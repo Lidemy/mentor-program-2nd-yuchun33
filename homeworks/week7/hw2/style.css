@@ -1,0 +1,107 @@
+body{
+    background: tan;
+}
+body *{
+    box-sizing: border-box;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+}
+.container{
+    width: 960px;
+    padding: 30px;
+    margin: 0 auto;
+    font-size: 20px;
+
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+}
+.time{
+    color: white;
+    font-size: 80px;
+}
+.quotation{
+    width: 600px;
+    padding-right: 20px;
+    padding-left: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: center;
+    color: white;
+    font-size: 22px;
+    border-bottom: 2px solid white;
+
+}
+#add{
+    margin-top: 60px;
+}
+#add input[type="text"]{
+    width: 400px;
+    height: 30px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 0;
+    box-shadow: 1px 1px 2px 1px darkgrey;
+}
+#add input[type="submit"]{
+    width: 40px;
+    height: 30px;
+    background: saddlebrown;
+    color: white;
+    border-radius: 5px;
+    border: 0;
+    box-shadow: 1px 1px 2px 1px darkgrey;
+}
+.item{
+    position: relative;
+    width: 440px;
+    height: 30px;
+    background: white;
+    border-left: 7px solid saddlebrown;
+    border-radius: 3px;
+    margin-top: 7px;
+    box-shadow: 1px 1px 2px 1px darkgrey;
+}
+.item input{
+    width: 15px;
+    height: 15px;
+    border: 1px solid seagreen;
+    margin: 0;
+    position: absolute;
+    left: 10px;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+
+}
+.item label{
+    line-height: 30px;
+    position: absolute;
+    left: 35px;
+}
+.item input[type='button']{
+    position: absolute;
+    width: 50px;
+    height: 30px;
+    left: 380px;
+    color: #e6dcd5;
+    opacity: 0;
+}
+
+.item input[type='button']:hover{
+    font-size: 20px;
+    background: white;
+    font-weight: 600;
+    cursor: pointer;
+    color: saddlebrown;
+    opacity: 100;
+    border: none;
+}
+
+.ref{
+    color: wheat;
+    position: absolute;
+    bottom: 10px;
+    right: 50px;
+}

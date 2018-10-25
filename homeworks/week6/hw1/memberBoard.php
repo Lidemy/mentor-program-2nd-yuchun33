@@ -127,7 +127,6 @@
     <div class='edit<?php echo $subTable.$row['ID']?>' style='display:none'>
         <form method='POST' action='./update.php'>
             <input type='hidden' name='updateID' value='<?php echo$row['ID']?>'>
-            <input type='hidden' name='tableName' value='<?php echo$subTable?>'>
             <input type='text' name='updateContent'>
             <input type='submit' value='送出'>
         </form>
