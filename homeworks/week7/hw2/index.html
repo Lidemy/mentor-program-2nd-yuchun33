@@ -1,0 +1,93 @@
+<!DOCTYPE>
+<html>
+<head>
+    <title>To Do List</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="./style.css">
+    <link href="https://fonts.googleapis.com/css?family=Fira+Sans" rel="stylesheet"> 
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+</head>
+    <script>
+        $(function(){
+            var time = new Date()
+            mouth = time.getMonth()
+            day = time.getDate()
+            hour = time.getHours()
+            minute = time.getMinutes()
+            var displaytime
+
+            if(minute<10){
+                var displaytime = hour + ' : 0' + minute
+            } else {
+                var displaytime = hour + ' : ' + minute
+            }
+            $('.time').html(displaytime)
+
+            $('#add').submit(function(event){
+                event.preventDefault()
+                if($('input[name="mission"]').val()){
+                    var newdiv=$("<div></div>")
+                    newdiv.addClass('item')
+                    $('#list').prepend(newdiv)
+
+                    var newinput = $('input[name="mission"]').val()
+                    var newcheck = $("<input class='check' type='checkbox' id='" + newinput + "'>")
+                    var newlabel = $("<label for='"+ newinput + "'></label>")
+                    var newdelete = $("<input class='delete' type='button' value='X'>")
+                    newlabel.html(newinput)
+                    newdiv.append(newcheck)
+                    newdiv.append(newlabel)
+                    newdiv.append(newdelete)
+                    
+                    $('input[name="mission"]').val('')
+                }
+            })
+
+            //必須使用代理
+            $('#list').on('click','.delete',function(){
+                $(this).parent().remove()
+            })
+
+            $('#list').on('change','.check',function(){
+                if($(this).is(':checked')){
+                    $(this).next().css('text-decoration','line-through')
+                } else{
+                    $(this).next().css('text-decoration','initial')
+                }
+            })
+
+            // sentence
+            $.ajax({
+                method: "GET",
+                url: "./quotations.json",
+                dataType:"json"
+            }).done(function(data){
+                var quotations = data.quotations;
+                var n = quotations.length
+                var v = Math.floor(Math.random()*10%n)
+                console.log(v);
+                $('.quotation').html(quotations[v])
+            })
+
+            
+            
+        })
+    </script>
+<body>
+    <div class="container">
+        <div class="time"></div>
+        <div class="quotation"></div>
+
+        <form id="add">
+            <input type="text" name="mission">
+            <input type="submit" value="+">
+        </form>
+
+        <div id="list">
+        </div>
+
+    </div>
+    <a href="https://codepen.io/lolazers/pen/jzOGgE" class='ref'>參考：Jonathan Ng </a>
+</body>
+</html>

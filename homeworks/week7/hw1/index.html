@@ -1,0 +1,82 @@
+<!DOCTYPE <!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Grid System</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+    body *{
+        border: 1px solid darkblue;
+        background: skyblue;
+    }
+    .container{
+        display: flex;
+        width: 960px;
+    }
+    .col-1{
+        width: 80px;
+    }
+    .col-2{
+        width: 160px;
+    }
+    .col-3{
+        width: 240px;
+    }
+    .col-4{
+        width: 320px;
+    }
+    .col-5{
+        width: 400px;
+    }
+    .col-6{
+        width: 480px;
+    }
+    .col-7{
+        width: 560px;
+    }
+    .col-8{
+        width: 640px;
+    }
+    .col-9{
+        width: 720px;
+    }
+    .col-10{
+        width: 800px;
+    }
+    .col-11{
+        width: 880px;
+    }
+    .col-12{
+        width: 960px;
+    }
+    @media screen and (max-width: 960px){
+        .container{
+            width: 100%;
+        }
+    }
+    @media screen and (max-width: 720px){
+        .col-1,.col-2,.col-3,.col-4,.col-5,.col-6,.col-7,.col-8,.col-9,.col-9,.col-10,.col-11,.col-12{
+            width: 100%;
+        }
+        .container{
+            display: block;
+            width: 100%;
+        }
+    }
+    </style>
+</head>
+<body>
+    <div class='container'>
+        <div class='col-1'>
+            col1
+        </div>
+        <div class='col-5'>
+            col5
+        </div>
+        <div class='col-6'>
+            col6
+        </div>    
+    </div>
+</body>
+</html>
