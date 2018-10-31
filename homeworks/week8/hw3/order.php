@@ -4,7 +4,7 @@
     $query = "SELECT items FROM $table";
 
     $item1 = $_POST['item1'];
-    $item2 = $_POST['item2'];
+    $item2 = 1;
     $item3 = $_POST['item3'];
     $item4 = $_POST['item4'];
     $item5 = $_POST['item5'];
@@ -15,16 +15,21 @@
     $conn->begin_transaction();
     $check = true;
     for($i=0;$i<sizeof($itemQuantity);$i++){
-        $sql = "SELECT quantity FROM $table WHERE items=$itemName[$i]";
+        $sql = "SELECT quantity FROM $table WHERE items=$itemName[$i] FOR UPDATE";
+        echo $sql . '<br>';
         $result = $conn->query($sql);
 
         if($result->num_rows>0){
             while($row=$result->fetch_assoc()){
-                if($row['quantity']-$itemQuantity[$i]>=0){
+                echo $i.'<------->';
+                if($row['quantity']>=$itemQuantity[$i]){
+                    echo $row['quantity'] . '-' . $itemQuantity[$i] . '<br>';
                     $newQuan = $row['quantity']-$itemQuantity[$i];
                     $sql = "UPDATE $table SET quantity=$newQuan WHERE items=$itemName[$i]";
                     $conn->query($sql);
                 } else{
+                    echo $row['quantity'] . $itemQuantity[$i];
+                    echo $row['quantity'] . '-' . $itemQuantity[$i] . '<br>';
                     $check = false;
                 }
             }
