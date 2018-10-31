@@ -1,0 +1,109 @@
+*{
+    box-sizing: border-box;
+
+}
+.container{
+    width: 960px;
+}
+.col-1{
+    width: calc(960px/12*1);
+}
+.col-2{
+    width: calc(960px/12*2);
+}
+.col-3{
+    width: calc(960px/12*3);
+}
+.col-4{
+    width: calc(960px/12*4);
+}
+.col-5{
+    width: calc(960px/12*5);
+}
+.col-6{
+    width: calc(960px/12*6);
+}
+.col-7{
+    width: calc(960px/12*7);
+}
+.col-8{
+    width: calc(960px/12*8);
+}
+.col-9{
+    width: calc(960px/12*9);
+}
+.col-10{
+    width: calc(960px/12*10);
+}
+.col-11{
+    width: calc(960px/12*11);
+}
+.col-12{
+    width: calc(960px/12*12);
+}
+.table{
+    margin: 0 auto;
+}
+.row{
+
+    display: flex;
+    border-bottom: 1px solid #d17a22;
+}
+.row div{
+    height: 130px;
+    line-height: 130px;
+    display: flex;
+    align-items: center;
+}
+.inforow div{
+    height: 80px;
+    line-height: 80px;
+    background: #d17a22;
+    color: white;
+    font-weight: 600; 
+    
+}
+.inforow> div:first-child{
+    padding-left: 40px;
+}
+img{
+    height: 120px;
+    display: block;
+    margin: auto;
+}
+.submit{
+    position: relative;
+    height: 60px;
+}
+.submit input{
+    font-size: 20px;   
+    width: 100px;
+    height: 40px;
+    background: #d17a22;
+    position: absolute;
+    right: 60px;
+    top: 10px;
+    color: white;
+    font-weight: 600;
+    border: none;    
+    box-shadow: 1px 1px 1px 1px silver;
+}
+.submit input:hover{
+    cursor: pointer;
+    background: #a05912;
+    
+}
+.submit .total{
+    height: 40px;
+    position: absolute;
+    left: 600px;
+    top: 10px;    
+    font-size: 26px;
+}
+.submit .totalamount{
+    height: 40px;
+    font-size: 26px;
+    position: absolute;
+    left: 680px;
+    top: 10px;
+}

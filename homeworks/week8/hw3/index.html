@@ -1,0 +1,128 @@
+<!DOCTYPE <!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>購物車</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+</head>
+<script>
+    $(function(){
+        $('.amount').change(function(){
+            let price = parseInt($(this).parent().prev().html().replace(",",""))
+            let unit = $(this).val()
+            let subtotal = price*unit
+            $(this).parent().next().html(subtotal.toLocaleString())
+        })
+        $('.amount').change(function(){
+            let select = $('.subtotal')
+            let sum = 0
+            for(let i=0; i<select.length; i++){
+                sum+= parseInt(select[i].innerHTML.replace(",",""));
+            }
+            $('.totalamount').html(sum.toLocaleString())
+        })
+
+    })
+</script>
+<body>
+    <div class='container table'>
+        <div class='row inforow'>
+                <div class='col-3 itemphoto'>商品</div>
+                <div class='col-3'>商品名稱</div>
+                <div class='col-2'>單價</div>
+                <div class='col-2'>數目</div>
+                <div class='col-2'>小計</div>
+            </div>
+        <form method="POST" action="./order.php">
+        <div class='row'>
+            <div class='col-3'>
+                <img src='image/1.jpeg'>
+            </div>
+            <div class='col-3'>小南瓜</div>
+            <div class='col-2'>1,031</div>
+            <div class='col-2'>
+                <select class='amount' name='item1'>
+                    <option value='0' selected="selected">0</option>
+                    <option value='1'>1</option>
+                    <option value='2'>2</option>
+                    <option value='3'>3</option>
+                </select>
+            </div>
+            <div class='col-2 subtotal'>0</div>
+        </div>
+        <div class='row'>
+            <div class='col-3'>
+                <img src='image/2.jpg'>
+            </div>
+            <div class='col-3'>小沙拉</div>
+            <div class='col-2'>69</div>
+            <div class='col-2'>
+                <select class='amount' name='item2'>
+                    <option value='0' selected>0</option>
+                    <option value='1'>1</option>
+                    <option value='2'>2</option>
+                    <option value='3'>3</option>
+                </select>
+            </div>
+            <div class='col-2 subtotal'>0</div>
+        </div>
+        <div class='row'>
+            <div class='col-3'>
+                <img src='image/3.jpg'>
+            </div>
+            <div class='col-3'>小蛋糕</div>
+            <div class='col-2'>999</div>
+            <div class='col-2'>
+                <select class='amount' name='item3'>
+                    <option value='0' selected>0</option>
+                    <option value='1'>1</option>
+                    <option value='2'>2</option>
+                    <option value='3'>3</option>
+                </select>                
+            </div>
+            <div class='col-2 subtotal'>0</div>
+        </div>
+        <div class='row'>
+            <div class='col-3'>
+                <img src='image/4.jpeg'>
+            </div>
+            <div class='col-3'>小伸展</div>
+            <div class='col-2'>1,234</div>
+            <div class='col-2'>
+                <select class='amount' name='item4'>
+                    <option value='0' selected>0</option>
+                    <option value='1'>1</option>
+                    <option value='2'>2</option>
+                    <option value='3'>3</option>
+                </select>                   
+            </div>
+            <div class='col-2 subtotal'>0</div>
+        </div>        
+        <div class='row'>
+            <div class='col-3'>
+                <img src='image/5.jpeg'>
+            </div>
+            <div class='col-3'>小串燒</div>
+            <div class='col-2'>88</div>
+            <div class='col-2'>
+                <select class='amount' name='item5'>
+                    <option value='0'selected>0</option>    
+                    <option value='1'>1</option>
+                    <option value='2'>2</option>
+                    <option value='3'>3</option>
+                </select>   
+            </div>
+            <div class='col-2 subtotal'>0</div>
+        </div>
+        <div class='row submit'>
+            <div class='total'>總額：</div>
+            <div class='totalamount'>0</div>        
+            <input type="submit" value="送出訂單">
+        </div>
+        </form>        
+    </div>
+    
+</body>
+</html>
