@@ -15,12 +15,12 @@
     $conn->begin_transaction();
     $check = true;
     for($i=0;$i<sizeof($itemQuantity);$i++){
-        $sql = "SELECT quantity FROM $table WHERE items=$itemName[$i]";
+        $sql = "SELECT quantity FROM $table WHERE items=$itemName[$i] FOR UPDATE";
         $result = $conn->query($sql);
 
         if($result->num_rows>0){
             while($row=$result->fetch_assoc()){
-                if($row['quantity']-$itemQuantity[$i]>=0){
+                if($row['quantity']>=$itemQuantity[$i]){
                     $newQuan = $row['quantity']-$itemQuantity[$i];
                     $sql = "UPDATE $table SET quantity=$newQuan WHERE items=$itemName[$i]";
                     $conn->query($sql);
