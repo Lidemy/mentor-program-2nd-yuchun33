@@ -13,6 +13,7 @@
     }
 
 
+
 /*
     if($parent == 0){
         $table = 'yuchun_board';
@@ -39,28 +40,26 @@
     }
 */
     if(!empty($_COOKIE['vertify'])){
-        echo 'ccc'.$_COOKIE['vertify'];
         $table = 'yuchun_board';
-        $sql = "INSERT INTO $table (user, content, timestamp, parent) VALUES ('{$username}','{$content}','{$timestamp}',{$parent})";
-        //$sql = "INSERT INTO "
-        
-        
-        if($conn->query($sql)===TRUE){
+        $sql = "INSERT INTO $table (user, content, timestamp, parent) VALUES (?, ?, ?, ?)";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("sssi",$username,$content,$timestamp,$parent);
+
+        if($stmt->execute()===TRUE){
             echo 'New record created successfully' . '<br>';
             $last_id = $conn->insert_id;
             echo $last_id;
-            $lastID = array("ID"=>$last_id);
-            echo $lastID["ID"];
-            $fp = fopen('lastID.json','w');
-            fwrite($fp,json_encode($lastID));
-            fclose($fp);
+
+            header("lastID: $last_id");
+            header("content: $content");
+            header("parent: $parent");
 
         } else {
             echo $sql . '<br>';
             echo 'error creating record: ' . $conn->error . '<br>';
         }
-        $url = './memberBoard.php';
-        header("Location: " . $url);   
+        //$url = './memberBoard.php';
+        //header("Location: " . $url);   
     }else{
 ?>
     <script>
