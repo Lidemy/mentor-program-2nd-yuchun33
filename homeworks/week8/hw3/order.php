@@ -16,20 +16,15 @@
     $check = true;
     for($i=0;$i<sizeof($itemQuantity);$i++){
         $sql = "SELECT quantity FROM $table WHERE items=$itemName[$i] FOR UPDATE";
-        echo $sql . '<br>';
         $result = $conn->query($sql);
 
         if($result->num_rows>0){
             while($row=$result->fetch_assoc()){
-                echo $i.'<------->';
                 if($row['quantity']>=$itemQuantity[$i]){
-                    echo $row['quantity'] . '-' . $itemQuantity[$i] . '<br>';
                     $newQuan = $row['quantity']-$itemQuantity[$i];
                     $sql = "UPDATE $table SET quantity=$newQuan WHERE items=$itemName[$i]";
                     $conn->query($sql);
                 } else{
-                    echo $row['quantity'] . $itemQuantity[$i];
-                    echo $row['quantity'] . '-' . $itemQuantity[$i] . '<br>';
                     $check = false;
                 }
             }
