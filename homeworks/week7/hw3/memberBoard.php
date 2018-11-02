@@ -42,12 +42,11 @@ $(function(){
                 content:$(event.delegateTarget).find('textarea[name="content"]').val(),
                 parent:$(event.delegateTarget).find('input[name="parent"]').val()
             },
-            success:function(){
-                var ID = request.getResponseHeader("lastID");
-                var content = $(event.delegateTarget).find('textarea[name="content"]').val()
-                var error_content = request.getResponseHeader("content");
+            success:function(response){
+                res = JSON.parse(response);
+                var ID = res.ID;
+                var content = res.content;
                 console.log(content);
-                console.log(error_content); //為何是亂碼               
                 var user = "<?php echo $_COOKIE['cookie']?>"
 
                 $(event.delegateTarget).parent().after(
@@ -104,9 +103,10 @@ $(function(){
                 content:$(event.currentTarget).find('input[name="content"]').val(),
                 parent:$(event.currentTarget).find('input[name="parent"]').val()
             },
-            success:function(){
-                var ID = add.getResponseHeader( "lastID");
-                var content = $(event.currentTarget).find('input[name="content"]').val()
+            success:function(response){
+                res = JSON.parse(response);
+                var ID = res.ID;
+                var content = res.content;
                 var user = "<?php echo $_COOKIE['cookie']?>"
                 
                 $(event.currentTarget).prev().prepend(
@@ -139,7 +139,6 @@ $(function(){
         })
         event.preventDefault()
     })
-
 })
 </script>
 
@@ -163,7 +162,6 @@ $(function(){
     ?>
     </nav>
 
-
     <div class='container'>
         <div class='newpost'>
             <div class='avater'></div>
@@ -174,7 +172,6 @@ $(function(){
                 <button type='submit' class='btn btn-primary'>發佈</button>
             </form>
         </div>
-
 <!--主留言-->
 <?php
     require('./connect.php');
@@ -208,8 +205,6 @@ $(function(){
                         <div class='main__timestamp'><?php echo $row['timestamp']?></div>
                     </div>
                 </div>
-
-
 <!--使用者可編輯和刪除-->
 <?php 
         if(isset($_COOKIE['cookie'])){
@@ -223,8 +218,7 @@ $(function(){
                 </div>
 <?php
             }
-        } 
-            
+        }   
 ?>
 <!--主留言編輯框-->            
 
@@ -282,8 +276,7 @@ $(function(){
             echo "<input class='update{$row['ID']}' type='button'  name='update' value='編輯' onclick='updateMessage({$row['ID']})'>";
             echo "</div>";
         }
-    }
-        
+    }       
 ?>
 <!--編輯框-->
     <div class='edit<?php echo $row['ID']?>' style='display:none'>
@@ -294,14 +287,12 @@ $(function(){
         </form>
     </div>
     </div>
-
 <?php
         }
             }    
         }
 ?>
         </div>
-
 <!--留言框-->
 <?php
     if(isset($_COOKIE['cookie'])){
@@ -323,11 +314,8 @@ $(function(){
     }    
     echo "</div>";
     }
-    
 ?>
-
 </div>
-
 <!--換頁-->
 <div class='page'>
 <?php
@@ -338,18 +326,14 @@ $(function(){
     for($i=1; $i<(int)$devide+1; $i++){
         echo "<input type='button' class='btn btn-light' value='$i' onclick='express($i)'>";
     }
-
 ?>
 <div>
 </body>
-
-
 <!--Function-->
 <script>
     function express(value){
         location.href="./memberBoard.php?page="+value;
     }
-
     //Q 刪除輸入背景變不回去
     function detectUser(ID,user,cookie){
         if (user==cookie){
@@ -361,7 +345,6 @@ $(function(){
             b.style.background = 'white'
         }
     }
-
     function updateMessage(ID){
         var c = document.querySelector('.edit'+ID)
         if (c.style.display === "none") {
@@ -370,8 +353,6 @@ $(function(){
             c.style.display = "none";
         }
     }
-
-
     function checkDelete(ID){
         if(confirm('你確定要刪除留言?')){
             alert('你已刪除留言')
@@ -405,7 +386,6 @@ $(function(){
                     }
                 }
             })
-
         }
     }
 </script>
