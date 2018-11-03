@@ -1,0 +1,126 @@
+$fontSize_h1:28px
+$fontSize_1: 20px
+$fontSize_2: 16px
+$fontSize_3: 14px
+$bannerColor: lightseagreen
+$fontFamily:'Courier New', Courier, monospace
+$lightsteelblue: lightsteelblue
+$lightslategray: lightslategray
+*
+    margin: 0
+    padding: 0
+    box-sizing: border-box
+    font-family: $fontFamily
+.banner
+    background-color: $bannerColor
+    width: 100%
+    height: 40%
+    position: absolute
+    z-index: -1
+.footer
+    padding: 50px
+    width: 80%
+    text-align: center
+    position: relative
+    top: 150px
+    margin: 0 auto
+    font-size: $fontSize_h1
+    color: $lightsteelblue
+
+.container
+    position: relative
+    top: 120px
+    background-color: white
+    max-width: 650px
+    border-top: 5px solid $lightslategray
+    padding: 20px 
+    margin: 0 auto
+    box-shadow: 1.8px 1.8px 3.5px 1px $lightsteelblue
+
+@media screen and (max-width: 500px)
+    .banner
+        height: 25%
+    .container
+        top: 80px
+@media screen and (max-width: 700px)
+    .container
+        width: 80%
+@media screen and (min-width: 900px)
+    .banner
+        height: 300px   
+
+.header
+    padding-left: 15px
+    h1
+        color: $lightslategray
+    .description       
+        margin-top: 10px   
+        font-size: $fontSize_3
+        line-height: 1.8em
+
+.question
+    padding: 20px 10px
+    margin: 3px 0
+    display: flex
+    flex-direction: column
+    font-size: $fontSize_1
+    border-radius: 2px
+    .example
+        margin-top: 5px
+        font-size: $fontSize_3
+    input
+        margin-top: 20px
+        padding: 5px
+        font-size: $fontSize_2
+        border: none
+        border-bottom: 1px solid gainsboro
+        transition: border 0.3s ease-in
+    input:focus
+        border-bottom: 3px solid #db4437
+
+.fieldset,
+.fieldset * 
+    margin: 0
+    border: none
+    padding: 0
+
+.radiochoose
+    display: flex
+    align-content: flex-start
+    padding-left: 5px
+    margin-top: 5px
+    .radioinput
+        position: relative
+        width: 30px
+        input[type='radio']
+            border: none
+            border-bottom: 1px solid gray
+            margin: 0
+            padding: 0
+            text-align: center
+            position: absolute
+            top: 50%
+            left: 50%
+            transform: scale(1.5) translate(-50%,-50%)    
+    .radiolabel
+        display: block
+        width: 90%
+        font-size: $fontSize_2
+
+.invalid
+    color: #db4437
+    margin-top: 15px
+    font-size: $fontSize_2
+
+.submit
+    width: 80px
+    height: 30px
+    padding: 5px
+    background-color: cornflowerblue
+    border: none
+    color: white
+    border-radius: 3px
+
+.submit:hover
+    cursor: pointer
+
