@@ -1,3 +1,4 @@
+#### 執行結果：13524
 - JavaScript 是單線程執行（single threaded）的程式語言，程式碼會以 stack 的順序被執行（只會執行 Call Stack 區 的任務）。
 - 但為了實現不同步的事件需求，瀏覽器提供一個計時兼存放的 Web APIs，讓 callback function 可以排隊進入 Task queue 區。
 - 瀏覽器會不斷檢查 Call Stack 區和 Task queue 區，但優先順序是 Call Stack 區都執行完畢後才會把 Task queue 區的任務移致 Call Stack 區執行。
