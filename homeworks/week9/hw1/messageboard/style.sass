@@ -1,0 +1,175 @@
+$primary-color: rgb(59, 89, 152)
+$secondary-color: #6c8ead
+$lighterblue: #acdde7
+$avater-color: #a2e3c4
+$font-stack:  'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+$shadow: 0.5px 0.5px 2px 1px grey
+
+body
+    background: #f9edcc
+    box-sizing: border-box
+    *  
+        box-sizing: border-box
+        font-size: 16px
+        font-family: $font-stack
+
+//導覽列
+.navbar
+    display: flex
+    justify-content: flex-end
+    align-items: center
+    .user
+        font-size: 20px
+        margin-right: 10px
+.container
+    width: 960px
+    margin: 0 auto
+    margin-top: 20px
+
+//新增主留言    
+.newpost
+    margin: 0 auto
+    background: white
+    padding: 10px
+    width: 500px
+    display: flex
+    justify-content: flex-end
+    margin: 20 auto
+    box-shadow: $shadow
+    .avater
+        width: 40px
+        height: 40px
+        border-radius: 40px
+        margin-right: 5px
+        display: float
+        background: $primary-color
+    .mainForm
+        position: relative
+        width:90%
+        height: 150px
+        textarea
+            width: 100%
+            height: 110px
+        button
+            margin-top: 5px
+            position: absolute
+            right: 0px
+        .form-control
+            width: 80%
+            margin-right: 5px
+
+//主留言    
+.post
+    margin: 0 auto
+    background: white
+    padding: 10px
+    width: 500px
+    box-shadow: $shadow
+    margin: 10px auto
+    .main
+        border-bottom: 1px solid gainsboro
+        margin-bottom: 30px
+        padding: 5px
+        position: relative
+        .avater
+            width: 40px
+            height: 40px
+            border-radius: 40px
+            background: $avater-color
+        .info
+            display: flex
+            align-items: center
+            .idandtime
+                margin-left: 5px
+                .main__id
+                    color: $primary-color
+                .main__timestamp
+                    font-size: 12px
+        .memberfunction
+            width: 100px
+            position: absolute
+            right: 5px
+            top: 5px
+        .main__content
+            margin: 10px 0 10px 0
+        .updateForm
+            display: flex
+    .subs
+        border-top: 1px solid gainsboro
+        .sub
+            margin-top: 10px
+            padding: 5px
+            position: relative
+            *
+                display: inline-block
+            .avater
+                width: 30px
+                height: 30px
+                border-radius: 30px
+                background: $avater-color
+                margin-top: 5px
+            .idandcontent
+                border-radius: 15px
+                background-color: $lighterblue
+                padding: 8px
+                position: absolute
+                margin-left: 5px
+            .sub__timestamp
+                position: absolute
+                top: 40px
+                left: 40px
+                color: grey
+                font-size: 12px
+                margin-top: 3px
+
+
+//留言者    
+.idandcontent
+    .sub__id
+        color: $primary-color
+        font-weight: 600px
+    .sub_content
+        position: relative
+        left: 40px
+
+//新增子留言
+.addpost
+    padding: 5px
+    display: flex
+    align-items: center
+    margin-top: 10px   
+    input[type='text']
+        width: 450px
+        height: 30px
+    .avater
+        width: 30px
+        height: 30px
+        border-radius: 30px
+        background: $primary-color
+        margin-right: 8px
+
+//修改及刪除
+.memberfunction
+    width: 100px
+    position: absolute
+    right: 5px
+    top: 5px
+    input
+        display: inline-block
+        font-size: 14px
+        width: 40px
+        border: 0px
+        margin: 2px
+        border-radius: 3px
+        color: white
+        background: $secondary-color
+
+//頁碼
+.page
+    width: 300px
+    margin: 20px auto
+    display: flex
+    justify-content: center
+
+.updateForm
+    display: flex
