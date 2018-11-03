@@ -4,7 +4,7 @@
 
 ## 請舉出任何一個跟 HTTP Cache 有關的 Header 並說明其作用。
 > 1. `expire:2019-01-01`：若時間沒有超過 2019-01-01 就不會發 request。
-> 2. `max-age:31536000`：若距離上次的 request 沒有超過一年就不會發 request。
+> 2. `catch-control:max-age=31536000`：若距離上次的 request 沒有超過一年就不會發 request。
 > 3. `catch-control:no-store`：不要任何快取，每次都要發新的 request。
 > 4. `catch-control:no-store`：若請求的內容沒有更改就不要發 request，但有更改就要更新。
 
