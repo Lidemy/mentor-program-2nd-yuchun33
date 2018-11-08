@@ -19,3 +19,6 @@
 >    - 原理：把圖片用 base64 編碼，直接填入 html 檔。
 >    - 好處：不用請求圖片。
 >    - 壞處：因為是文字所以瀏覽器不能快取、更換圖片就要重新修改 html、會讓 html 檔案變大、可讀性較圖片差許多。
+> 3. 哪個比較好?
+>    -[這篇](https://www.oschina.net/translate/css-sprites-vs-data-uris-which-is-faster-on-mobile?lang=chs&p=1) 做實驗的結果是 CSS Sprites 還是比 Data URI 快，在快取（但 Data URI 不是不能快取?）下兩個也都會變快，也說 Data URI 不要大於3-5個。
+>    #### Q：通常會用哪個呢？ （猜測還是 CSS Sprites？）
