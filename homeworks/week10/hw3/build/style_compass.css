@@ -1,0 +1,14 @@
+.container{width:960px;margin:0 auto;display:flex;align-items:center;flex-direction:column;padding-bottom:50px;background:#FBE251;border-radius:10px}
+.container h1{font-size:48px;color:#F05E1C}
+.container form{display:flex;justify-content:flex-start;width:400px;padding:5px}
+.container form input{margin-left:10px;height:60px;font-size:28px;padding:5px;border:none;border-radius:5px;box-shadow:none}
+.container form input[type=submit]{width:60px;background:#F05E1C;border:0;padding:0;line-height:30px;color:#fff}
+.container form input[type=submit]:hover{background:#F75C2F}
+.mission{border-left:5px solid #F05E1C;width:400px;padding:5px;position:relative;margin-top:5px;background:#fff}
+.mission .missionContent{position:relative;padding-left:35px;font-size:24px;color:#F05E1C;word-wrap:break-word}
+.mission .missionContent input{display:none}
+.mission .missionContent .checkmark{position:absolute;left:5px;height:25px;width:25px;border:1px solid #F05E1C}
+.mission .missionContent input:checked~.checkmark,.mission .missionContent:hover input~.checkmark{background-color:#F05E1C}
+.mission .missionContent .checkmark::after{content:"";position:absolute;display:none;left:9px;top:5px;width:5px;height:10px;border:solid #fff;border-width:0 3px 3px 0;transform:rotate(45deg)}
+.mission .missionContent input:checked~.checkmark::after{display:block}
+.mission button{font-size:20px;position:absolute;right:5px;margin:none;color:#F05E1C}
