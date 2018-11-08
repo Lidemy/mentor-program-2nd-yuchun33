@@ -1,0 +1,89 @@
+$fontSize1: 48px
+$fontSize2: 28px
+$fontSize3: 24px
+$fontSize4: 20px
+$Primarycolor: #F05E1C
+
+.container
+    width: 960px
+    margin: 0 auto
+    display: flex
+    align-items: center
+    flex-direction: column
+    padding-bottom: 50px
+    background: #FBE251
+    border-radius: 10px
+
+    h1
+        font-size: $fontSize1
+        color: $Primarycolor
+    form
+        display: flex
+        justify-content: flex-start
+        width: 400px
+        padding: 5px
+        input
+            margin-left: 10px
+            height: 60px
+            font-size: $fontSize2
+            padding: 5px
+            border: none
+            border-radius: 5px
+            box-shadow: none
+        input[type='submit']
+            width: 60px
+            background: $Primarycolor
+            border: 0
+            padding: 0
+            line-height: 30px
+            color: white
+        input[type='submit']:hover
+            background: #F75C2F
+    
+.mission
+    border-left: 5px solid $Primarycolor
+    width: 400px
+    padding: 5px
+    position: relative
+    margin-top: 5px
+    background: white
+    .missionContent
+        position: relative
+        padding-left: 35px
+        font-size: $fontSize3
+        color: $Primarycolor
+        word-wrap: break-word
+        input
+            display: none
+        .checkmark
+            position: absolute
+            left: 5px
+            height: 25px
+            width: 25px
+            border: 1px solid $Primarycolor
+        &:hover input~ .checkmark
+            background-color: $Primarycolor
+        input:checked~ .checkmark
+            background-color: $Primarycolor
+        .checkmark::after
+            content: ""
+            position: absolute
+            display: none
+        input:checked~ .checkmark::after
+            display: block
+        .checkmark::after
+            left: 9px
+            top: 5px
+            width: 5px
+            height: 10px
+            border: solid white
+            border-width: 0 3px 3px 0
+            transform: rotate(45deg)
+
+    button
+        font-size: $fontSize4
+        position: absolute
+        right: 5px
+        margin: none
+        color: $Primarycolor
+
