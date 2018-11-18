@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>留言板</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="/css/style.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+</head>
+
+<body>
+<div><%= user%></div>
+<%if(user!==''){%>
+    <form method='GET' action='/logout'>
+        <input class="btn" type='submit' name='submit' value='登出'>
+    </form>   
+    <div class='createComment form-group shadow-sm p-3 mb-5 bg-white rounded'>
+        <h1>新增留言：</h1>
+        <form class='createCommentForm'>
+            <input type='text' name='nickname' value='<%=user%>' hidden>
+            <input type='text' name='parent' value='0' hidden>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="content">在想什麼？</textarea>
+            <input class="btn" type='submit' name='submit' value='送出'>
+        </form>
+    </div>
+<%} else{%>
+    <form method='GET' action='/'>
+        <input class="btn" type='submit' name='submit' value='登入留言'>
+    </form>    
+<%}%>    
+
+<div class='Y-container'>    
+    <% for(let i=0; i<result.length; i++){%>
+        <%if(result[i].parent==0){%>
+        <div class='comment shadow-sm p-3 mb-3 bg-white rounded' >
+            <div class='comment__main container'>
+                <div class='comment__main__info row'>
+                    <div class='comment__main__nickname'><%= result[i].nickname %></div>
+                    <div class='comment__main__createdAt'><%= result[i].createdAt %></div>
+                    
+                    <%if(user==result[i].nickname){%>
+                        <div class='comment__main__function row'>
+                            <form class='deleteForm'>
+                                <input class="form-control" type='text' name='deleteId' value="<%=result[i].id%>" hidden>
+                                <input class="main__function--delete" type='submit' name="delete" value='刪除'>
+                            </form>
+                            <button class="btn--edit main__function--edit" type="button" class="button">編輯</button>
+                        </div>
+                    <%}%>
+
+                </div>
+                <div class='comment__main__content row'><%= result[i].comment %></div>
+                <div class='comment__main__updateForm form-group p-3 bg-white rounded'>
+                    <form class='updateForm'>
+                        <input type='text' name='updateId' value="<%=result[i].id%>" hidden>
+                        <textarea class="form-control" name="updateComment"><%=result[i].comment%></textarea>
+                        <input type='submit' name="delete" value='更新'>
+                    </form>
+                </div>
+
+                
+            </div>
+
+            <div class='comment__subs'>
+                <% for(let j=0; j<result.length; j++){%>
+                    <% if(result[i].id==result[j].parent){%>
+                        <div class='comment__sub container'>
+                            <div class='comment__sub__info row'>
+                                <div><%=result[j].nickname%></div>
+                                <%if(user==result[j].nickname){%>
+                                    <div class='comment__sub__function row'>
+                                        <form class='deleteForm'>
+                                            <input type='text' name='deleteId' value="<%=result[j].id%>" hidden>
+                                            <input class="sub__function--delete" type='submit' name="delete" value='刪除'>
+                                        </form>
+                                        <button class="btn--edit sub__function--edit" type="button" class="btn btn-primary">編輯</button>
+                                    </div>
+                                <%}%>
+                            </div>
+
+                            <div class='comment__sub__content row'><%=result[j].comment%></div>
+
+                            <div class='comment__sub__updateForm form-group bg-white roundeds'>
+                                <form class='updateForm'>
+                                    <input type='text' name='updateId' value="<%=result[j].id%>" hidden>
+                                    <textarea class="form-control" name="updateComment"><%=result[j].comment%></textarea>
+                                    <input type='submit' name="delete" value='更新'>
+                                </form>
+                            </div>
+
+                        </div>
+                    <%}%>
+                <%}%>
+            </div>
+            <%if(user!==''){%>
+                <div class='Comment__form form-group'>
+                    <form class='createCommentForm'>
+                        <% let parent=result[i].id %>
+                        <input type='text' name='nickname' value='<%=user%>' hidden>
+                        <input type='text' name='parent' value=<%=parent%> hidden>
+                        <textarea class="form-control" name="content" placeholder="回應："></textarea>
+                        <input type='submit' name='submit' value='送出'>
+                    </form>
+                </div>
+            <%}%>
+
+        </div>
+        <%}%>
+    <%}%>
+</div>
+
+</body>
+</html>
+<%- include('./ajax')%> <!-- 要加在最後一行、 submit 的對象是 form 不是 submit-->
