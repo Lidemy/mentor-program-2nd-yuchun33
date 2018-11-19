@@ -1,0 +1,87 @@
+body 
+    *
+        box-sizing: border-box
+.createComment
+    width: 960px
+    margin: 0 auto
+    background: pink
+.Y-container
+    width: 960px
+    margin: 0 auto
+    //border: 1px solid seagreen
+.comment
+    *
+        font-size: 20px
+    .comment__main
+        border: 1px solid #255359
+        .comment__main__info
+            font-weight: 700
+            font-size: 40px
+            position: relative
+            background: rgba(170,246,131,0.7)
+            padding: 5px 8px 5px 8px
+            .comment__main__function
+                position: absolute
+                right: 20px
+                top: 5px
+        .comment__main__content
+            padding: 5px 8px 5px 8px
+        .comment__main__updateForm
+            display: none
+        
+    .comment__sub
+        margin-top: 5px
+        border: 1px solid #5da271
+        .comment__sub__info
+            color: #5da271
+            font-weight: 700
+            font-size: 28px
+            position: relative
+            padding: 5px 8px 5px 8px
+            .comment__sub__function
+                position: absolute
+                right: 20px
+                top: 5px
+        .comment__sub__content
+            padding: 5px 8px 5px 8px
+        .comment__sub__updateForm
+            display: none
+    .comment__form
+        margin-top: 10px
+        background: #77969A
+
+.main__function--delete,
+.main__function--edit,
+.sub__function--delete,
+.sub__function--edit,
+    border: 0px
+    width: 60px
+    height: 25px
+    margin-left: 5px
+    background: #5da271
+    color: white
+    line-height: 24px
+
+.sub__function--delete,
+.sub__function--edit,
+    background: white
+    border: 1px solid #5da271
+    color: #5da271
+
+.button--login
+    position: absolute
+    right: 20px
+    top: 20px
+    border: 0px
+    width: 100px
+    height: 40px
+    background: #43aa8b
+    color: white
+    &:hover
+        background: #76c1aa
+        box-shadow: 1px 1px 2px 1px #43aa8b
+
+.hide
+    display: none
+.show
+    display: block
