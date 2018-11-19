@@ -1,0 +1,13 @@
+.container {
+  width: 600px;
+  margin: 0 auto;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 20px;
+  box-shadow: 0px 0px 1px 1px grey;
+}
+.container form input {
+  width: 400px;
+}
+.container form button {
+  width: 60px;
+}
