@@ -27,7 +27,7 @@
     $(".Y-container").on("submit", ".deleteForm", function(evt){
         evt.preventDefault()
         var parames = {
-            deleteId:$(evt.delegateTarget).find('input[name="deleteId"]').val(),
+            deleteId:$(evt.currentTarget).find('input[name="deleteId"]').val(),
         }
         $.ajax({
             data: parames,
