@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize')
 // 定義 db
-const db = new Sequelize('mentor_program_db','student2nd','mentorstudent123',{
-    host: '166.62.28.131',
+const db = new Sequelize('','','',{
+    host: '',
     dialect: 'mysql'
 })
 // 連線 db

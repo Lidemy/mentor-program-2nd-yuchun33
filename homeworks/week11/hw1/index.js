@@ -8,10 +8,10 @@ const commentsController = require('./controllers/commentsController')
 const db = require('./models/dbhandlers')
 
 let options = {
-    host:"166.62.28.131",
-    user:"student2nd",
-    password:"mentorstudent123",
-    database:"mentor_program_db"
+    host:"",
+    user:"",
+    password:"",
+    database:""
 }
 
 const session = require('express-session');
