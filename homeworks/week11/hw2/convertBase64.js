@@ -1,3 +1,4 @@
+//轉短網址
 function convertBase64(id){
     const digitStr = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
     let shortURL = ''
