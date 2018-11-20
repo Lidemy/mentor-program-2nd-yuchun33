@@ -1,0 +1,29 @@
+.container {
+  width: 600px;
+  height: 400px;
+  margin: 20px auto;
+}
+.container * {
+  font-size: 20px;
+}
+.container h1 {
+  text-align: center;
+  font-size: 46px;
+  font-weight: 700;
+  color: #5da271;
+}
+.container form {
+  width: 90%;
+  margin: 0 auto;
+}
+.container form .btn--green {
+  width: 100%;
+  border: 0;
+  background: rgba(170, 246, 131, 0.7);
+}
+.container form .btn--white {
+  width: 100%;
+  margin: 5px auto;
+  border: 1px solid rgba(170, 246, 131, 0.7);
+  background: white;
+}
