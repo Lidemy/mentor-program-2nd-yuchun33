@@ -60,7 +60,7 @@ body * {
   display: none;
 }
 .comment .comment__form {
-  margin-top: 10px;
+  margin-top: 50px;
 }
 
 .main__function--delete,
@@ -104,9 +104,4 @@ body * {
 
 .show {
   display: block;
-}
-
-.error {
-  width: 300px;
-  margin: 0 auto;
 }

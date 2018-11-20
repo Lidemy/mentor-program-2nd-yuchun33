@@ -95,15 +95,17 @@
                 <%}%>
             </div>
             <%if(user!==''){%>
-                <div class='Comment__form form-group'>
+            <div class='comment__form'>
+                <div class='form-group'>
                     <form class='createCommentForm'>
                         <% let parent=result[i].id %>
                         <input type='text' name='nickname' value='<%=user%>' hidden>
                         <input type='text' name='parent' value=<%=parent%> hidden>
                         <textarea class="form-control" name="content" placeholder="回應："></textarea>
-                        <input type='submit' name='submit' value='送出'>
+                        <input class="btn" type='submit' name='submit' value='送出'>
                     </form>
                 </div>
+            </div>
             <%}%>
 
         </div>
@@ -114,3 +116,4 @@
 </body>
 </html>
 <%- include('./ajax')%> <!-- 要加在最後一行、 submit 的對象是 form 不是 submit-->
+
