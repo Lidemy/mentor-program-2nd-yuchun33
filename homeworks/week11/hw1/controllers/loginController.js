@@ -17,7 +17,7 @@ module.exports = {
         .then((result)=>{
             //3. 密碼正確嗎
             db_password = result.password
-            let md5 = crypto.createHash('md5')//有其他方法ㄇ?有，但還找不到
+            let md5 = crypto.createHash('md5')//有其他方法ㄇ?有
             let u_password_md5 = md5.update(password, 'utf8').digest('hex');   
             if(u_password_md5 == db_password){
                 console.log('登入成功');
