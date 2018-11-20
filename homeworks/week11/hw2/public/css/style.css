@@ -5,9 +5,11 @@
   font-size: 20px;
   box-shadow: 0px 0px 1px 1px grey;
 }
-.container form input {
+.container .form input {
   width: 400px;
 }
-.container form button {
+.container .form button {
+  display: block;
   width: 60px;
+
 }

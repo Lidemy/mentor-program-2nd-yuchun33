@@ -61,7 +61,6 @@ body * {
 }
 .comment .comment__form {
   margin-top: 10px;
-  background: #77969A;
 }
 
 .main__function--delete,
@@ -105,4 +104,9 @@ body * {
 
 .show {
   display: block;
+}
+
+.error {
+  width: 300px;
+  margin: 0 auto;
 }
