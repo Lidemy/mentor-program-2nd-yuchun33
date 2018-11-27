@@ -1,0 +1,76 @@
+
+$TealBlue: #468189
+$CambridgeBlue: #9dbebb
+
+*
+    margin: 0px
+    padding: 0px
+    box-sizing: border-box
+.nav
+    width: 100%
+    height: 60px
+    background: $CambridgeBlue
+    display: flex
+    font-size: 32px
+    .nav__item
+        list-style: none
+        width: 100px
+        color: white
+        line-height: 60px
+        margin-left: 20px
+        a:hover
+            color: $TealBlue
+            cursor: pointer
+        .active
+            color: $TealBlue
+.page
+    width: 100%
+    padding: 20px
+    .home,.about
+        width: 960px
+        font-size: 68px
+        padding: 20px
+        color: $TealBlue
+    .post
+        width: 960px
+        border: 2px solid $TealBlue
+        border-radius: 10px
+        padding: 10px
+        margin: 0 auto
+        margin-top: 10px 
+        font-size: 22px
+        .post__title
+            font-size: 32px
+            color: $TealBlue
+        &:hover
+            background: rgba(0,0,255,0.1)
+            cursor: pointer
+    .article  
+        width: 960px
+        border: 2px solid $TealBlue
+        border-radius: 10px
+        padding: 10px
+        margin: 0 auto
+        margin-top: 10px 
+        font-size: 22px
+        .article__title
+            font-size: 42px
+            color: $TealBlue
+        .article__body
+            margin-top: 10px
+            font-size: 32px
+        .backbtn
+            font-size: 18px
+            width: 150px
+            background: white
+            padding: 5px
+            border: 2px solid rgba(0,0,255,0.1)
+            border-radius: 3px
+            &:hover
+                background: rgba(0,0,255,0.1)
+                cursor: pointer
+
+
+
+    
+
