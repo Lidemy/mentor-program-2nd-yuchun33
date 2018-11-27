@@ -1,0 +1,84 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+.nav {
+  width: 100%;
+  height: 60px;
+  background: #9dbebb;
+  display: flex;
+  font-size: 32px;
+}
+.nav .nav__item {
+  list-style: none;
+  width: 100px;
+  color: white;
+  line-height: 60px;
+  margin-left: 20px;
+}
+.nav .nav__item a:hover {
+  color: #468189;
+  cursor: pointer;
+}
+.nav .nav__item .active {
+  color: #468189;
+}
+
+.page {
+  width: 100%;
+  padding: 20px;
+}
+.page .home, .page .about {
+  width: 960px;
+  font-size: 68px;
+  padding: 20px;
+  color: #468189;
+}
+.page .post {
+  width: 960px;
+  border: 2px solid #468189;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 0 auto;
+  margin-top: 10px;
+  font-size: 22px;
+}
+.page .post .post__title {
+  font-size: 32px;
+  color: #468189;
+}
+.page .post:hover {
+  background: rgba(0, 0, 255, 0.1);
+  cursor: pointer;
+}
+.page .article {
+  width: 960px;
+  border: 2px solid #468189;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 0 auto;
+  margin-top: 10px;
+  font-size: 22px;
+}
+.page .article .article__title {
+  font-size: 42px;
+  color: #468189;
+}
+.page .article .article__body {
+  margin-top: 10px;
+  font-size: 32px;
+}
+.page .article .backbtn {
+  font-size: 18px;
+  width: 150px;
+  background: white;
+  padding: 5px;
+  border: 2px solid rgba(0, 0, 255, 0.1);
+  border-radius: 3px;
+}
+.page .article .backbtn:hover {
+  background: rgba(0, 0, 255, 0.1);
+  cursor: pointer;
+}
