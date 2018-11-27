@@ -1,0 +1,91 @@
+* {
+  box-sizing: border-box;
+}
+
+#root {
+  padding: 10px;
+  width: 960px;
+  margin: 0 auto;
+}
+#root .title {
+  font-size: 48px;
+  color: #49274a;
+}
+#root .new {
+  width: 100%;
+}
+#root .new .new__input {
+  width: 850px;
+  height: 60px;
+  padding-left: 10px;
+}
+#root .new .new__submitbtn {
+  width: 70px;
+  height: 60px;
+  margin-left: 10px;
+  border: none;
+}
+#root * {
+  font-size: 28px;
+}
+#root .mission {
+  background: #F8EEE7;
+  height: 60px;
+  border-radius: 5px;
+  box-shadow: 1px 1px 2px 1px gray;
+  position: relative;
+  margin-top: 8px;
+  display: flex;
+}
+#root .mission .mission__checkbtn {
+  position: absolute;
+  margin-left: 5px;
+}
+#root .mission .mission__checkbtn--unchecked {
+  width: 50px;
+  height: 40px;
+  background-color: white;
+  border: none;
+  border: 2px solid #49274a;
+  position: absolute;
+  left: 10px;
+  top: 10px;
+}
+#root .mission .mission__checkbtn--unchecked:hover {
+  background: #49274a;
+  cursor: pointer;
+  box-shadow: 1px 1px 2px 1px white;
+}
+#root .mission .mission__checkbtn--checked {
+  padding: 3px;
+  width: 50px;
+  height: 40px;
+  border: none;
+  background-color: white;
+  border: 2px solid #49274a;
+  color: #49274a;
+  position: absolute;
+  left: 10px;
+  top: 10px;
+}
+#root .mission .mission__checkbtn--checked:after {
+  content: "V";
+}
+#root .mission .mission__content {
+  position: absolute;
+  line-height: 60px;
+  left: 50px;
+  margin-left: 35px;
+}
+#root .mission .mission__deletebtn {
+  position: absolute;
+  right: 5px;
+  border: none;
+  background: none;
+  color: white;
+  line-height: 50px;
+}
+#root .mission .mission__deletebtn:hover {
+  cursor: pointer;
+  color: #49274a;
+}

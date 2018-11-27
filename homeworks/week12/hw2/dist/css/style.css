@@ -1,0 +1,41 @@
+.game {
+  display: flex;
+  justify-content: center;
+}
+.game .game-info {
+  width: 400px;
+  margin-left: 20px;
+}
+.game .game-info .title {
+  font-size: 48px;
+}
+.game .game-info .status {
+  font-size: 36px;
+}
+.game .game-info .restartbtn {
+  width: 150px;
+  font-size: 28px;
+  border-radius: 5px;
+}
+.game .game-board {
+  width: 760px;
+}
+.game .game-board .square {
+  vertical-align: top;
+  width: 35px;
+  height: 35px;
+  font-size: 24px;
+  border-radius: 5px;
+}
+.game .game-board .square .white {
+  width: 20px;
+  height: 20px;
+  border-radius: 20px;
+  background: white;
+}
+.game .game-board .clicked {
+  background: white;
+}
+.game .game-board .marked {
+  color: red;
+}

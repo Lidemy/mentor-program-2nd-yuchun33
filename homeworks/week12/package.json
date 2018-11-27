@@ -1,0 +1,11 @@
+{
+  "name": "week12",
+  "version": "1.0.0",
+  "description": "請你用 React 實作出一個 todo list，介面跟功能就參考之前用 jQuery 寫出來的那個就行了。",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
