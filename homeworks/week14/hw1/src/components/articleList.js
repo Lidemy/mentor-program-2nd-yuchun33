@@ -3,22 +3,18 @@ import { Link } from "react-router-dom";
 import { createMarkup, timeConverter } from '../function/functions'
 
 class ArticleList extends React.Component{
+    //第一次
     componentDidMount(){
-        const { getPosts } = this.props //從 redux 傳來的
+        const { getPosts } = this.props
         getPosts()
     }
 
-    //無法更新
-    shouldComponentUpdate(){
-        const { updateList, getPosts } = this.props
-        console.log(updateList);
-        // 條件是設 EDIT_FULLDILLED 完後就會變 true，但這裡會在 FULLDILLED 之前就開始執行，所以還是 false
+    //是否更新文章列表
+    componentDidUpdate (prevProps, prevState){
+        const { updateList, getPosts, updateFinished } = this.props
         if(updateList){
             getPosts()
-            console.log('update');
-            return true
-        } else {
-            return false
+            updateFinished()
         }
     }
 

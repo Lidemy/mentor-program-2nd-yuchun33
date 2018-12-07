@@ -32,7 +32,7 @@ class Container extends React.Component {
         super(props)
     }
     componentDidMount(){
-        const { getPosts } = this.props //從 redux 傳來的
+        const { getPosts } = this.props
         getPosts()
     }
     
@@ -48,7 +48,12 @@ class Container extends React.Component {
                         login ? (<Redirect to="/articles"/>) : (<Login/>)
                     )}/>
                     <Route exact path='/about' component={About}/>
-                    <Route exact path='/articles' component={ArticleList}/>
+                    <Route exact path='/articles' render={()=>(
+                        <>
+                        <ArticleList/>
+                        <Article/>
+                        </>)}>
+                    </Route>
                     
                     <Route exact path='/articles/:id' render={()=>(
                         <>
