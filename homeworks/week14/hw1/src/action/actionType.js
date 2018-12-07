@@ -1,0 +1,8 @@
+export const GET_POST = 'GET_POST'
+export const APPEND_POST = 'APPEND_POST'
+export const GET_SINGLE_POST = 'GET_SINGLE_POST'
+export const DELETE_POST = 'DELETE_POST'
+export const EDIT_POST = ' EDIT_POST'
+export const LOGIN = 'LOGIN'
+export const GET_USER = 'GET_USER'
+export const LOGOUT = 'LOGOUT'
