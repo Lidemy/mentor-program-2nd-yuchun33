@@ -1,5 +1,4 @@
 import React from 'react'
-import { withRouter } from 'react-router-dom'
 import { createMarkup, timeConverter } from '../function/functions'
 
 class Article extends React.Component{
@@ -8,42 +7,37 @@ class Article extends React.Component{
         this.state = {
             mode: 'view',
             title: '',
-            body: ''
+            body: '',
+            update: true,
         }
     }
 
     //第一次要從這裡
     componentDidMount(){
-        const { getSinglePost } = this.props
-        getSinglePost(this.props.match.params.id)
+        const { getSinglePost, getLastPost, updateSingleFinished } = this.props
+        //沒有 id 就拿最新的
+        if(this.props.match.params.id){
+            getSinglePost(this.props.match.params.id)
+            
+        }else{
+            getLastPost()
+        }
     }
 
-    //都沒用
-    static getDerivedStateFromProps(nextProps, prevState){
-        console.log('getDerivedStateFromProps');
-    }
-    //都沒用
-    shouldComponentUpdate(prevProps, prevState){
-        console.log('shouldComponentUpdate');
-        const { getSinglePost } = this.props
-        if(prevProps.match.params.id !== this.props.match.params.id){
-            console.log(this.props.match.params.id);
-            getSinglePost(this.props.match.params.id)
-        }
-        return true
-    }
-    //都沒用
+    //修改跟第二次以後
     componentDidUpdate (prevProps, prevState){
-        console.log('Article: componentDidUpdate');
-        const { getSinglePost } = this.props
-
-        console.log(prevProps.match.params.id, ' ++++ ', this.props.match.params.id);
-        
+        const { updateSingle, getSinglePost, getLastPost, updateSingleFinished } = this.props
         if(prevProps.match.params.id !== this.props.match.params.id){
-            console.log(this.props.match.params.id);
             getSinglePost(this.props.match.params.id)
+        } else if (updateSingle){
+            if (this.props.match.params.id) {
+                getSinglePost(this.props.match.params.id)
+                updateSingleFinished()
+            } else {
+                getLastPost()
+                updateSingleFinished()
+            }
         }
-        return true
     }
 
     //刪除文章
@@ -51,6 +45,7 @@ class Article extends React.Component{
         const { deletePost } = this.props
         if(confirm('確定要刪除')){
             deletePost(this.props.match.params.id)
+            //但畫面沒變
         }
         alert('刪除成功')
     }
@@ -75,16 +70,21 @@ class Article extends React.Component{
         const { title, body } = this.state       
         editPost(post.id, {title:title, body:body, author:'user01', createdAt: Date.now()})
         this.setState({
-            mode: 'view'
+            mode: 'view',
+            update: true
         })
+        
     }
 
-    render(){
-        console.log('article render');
-        
+    render(){        
         const { post, login } = this.props
-        let time = timeConverter(post.createdAt)
-
+        console.log('post', post);
+        let mypost = {}
+        //轉換格式
+        post.length ? mypost = {...post[0]} : mypost = {...post}
+        let time = timeConverter(mypost.createdAt)
+        
+       
         if(this.state.mode === 'edit'){
             const { title, body } = this.state
             return(
@@ -102,8 +102,8 @@ class Article extends React.Component{
                         <button onClick={this.handleDelete}>刪除</button>
                         <button onClick={this.handleEdit}>編輯</button></>}
                     <div className="article__time">{time.month}-{time.date} {time.hour}:{time.min}</div>
-                    <div className="article__title">{post.title}</div>
-                    <div className="article__body" dangerouslySetInnerHTML={createMarkup(post.body)} />
+                    <div className="article__title">{mypost.title}</div>
+                    <div className="article__body" dangerouslySetInnerHTML={createMarkup(mypost.body)} />
                 </div>
             )
         }
@@ -112,4 +112,4 @@ class Article extends React.Component{
 
 
   
-export default withRouter(Article)
+export default Article
