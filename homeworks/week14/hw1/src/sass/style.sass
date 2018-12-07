@@ -1,0 +1,240 @@
+$Orange: rgba(250, 189, 40, 1)
+$Orange-t7: rgba(250, 189, 40, 0.7)
+$Orange-t5: rgba(250, 189, 40, 0.5)
+$Orange-t3: rgba(250, 189, 40, 0.3)
+$Brown: #504944
+$Wine: #b83046
+$Wine-t5: rgba(184, 48, 70, 0.5)
+a
+    text-decoration-line: none
+*
+    margin: 0px
+    padding: 0px
+    box-sizing: border-box
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+.flexContainer
+    display: flex
+    flex-direction: row
+    .addPage
+        width: 100%
+
+.nav
+    width: 10%
+    height: 100vh
+    background: $Orange
+    font-size: 32px
+    padding-top: 10px
+    .nav__item
+        list-style: none
+        width: 100%
+        height: 60px
+        line-height: 60px
+        padding-left: 20px
+        .nav__Link 
+            color: white
+            font-weight: 600
+        .nav__Link:hover
+            color: $Wine
+            cursor: pointer
+            font-weight: 700
+        .active
+            color: $Wine
+            font-weight: 700
+
+.posts 
+    width: 40%
+    height: 100vh
+    overflow-y: scroll
+    .post,.newpost
+        height: 140px
+        width: 100%
+        padding: 5px 10px 10px 10px
+        border-top: 1px solid $Wine
+        font-size: 22px
+        color: $Brown
+        display: flex
+        .post--left
+            width: 85%
+            .post__title
+                height: 30px
+                color: $Wine
+                font-weight: 600
+                font-size: 24px
+                margin-bottom: 10px
+                overflow: hidden
+            .post__body
+                height: 90px  
+                overflow: hidden
+        .post--right
+            width: 15%
+            display: flex
+            flex-direction: column
+            align-items: flex-end
+            .post__month    
+                font-size: 25px
+            .post__date
+                font-size: 65px
+        &:hover
+            background: $Orange-t3
+            cursor: pointer
+    .newpost
+        background: $Wine
+        height: 120px
+        line-height: 120px
+        text-align: center
+        color: white
+        font-size: 32px
+        text-decoration: none
+        &:hover
+            color: $Wine
+            font-weight: 600
+
+.page
+    position: relative
+    width: 90%
+    height: 100vh
+    overflow-y: scroll
+    .home,.about,.login
+        position: relative
+        width: 100%
+        font-size: 68px
+        padding: 20px
+        color: $Brown
+        overflow: hidden
+        .home__photo,.login__photo
+            position: absolute
+            left: 0
+            top: 0
+            max-width: 100%   
+            z-index: -5       
+        .home__button
+            position: absolute
+            width: 500px
+            top: 0
+            right: 0
+            bottom: 0
+            left: 0
+            margin: auto
+            font-size: 32px
+            padding: 0 20px 0 20px
+            height: 80px
+            line-height: 80px
+            display: block
+            border: none
+            border-radius: 15px
+            background: $Orange-t7
+            color: white
+            &:hover
+                border: 3px solid $Brown
+                cursor: pointer
+                background: $Orange-t5
+                color: $Brown
+                font-weight: 700
+    .article  
+        width: 60%
+        padding: 20px
+        margin: 0 auto
+        font-size: 22px
+        height: 100vh
+        overflow-y: scroll
+        position: relative
+        .article__time
+            height: 40px
+            font-size: 30px          
+            color: $Wine-t5
+        .article__title
+            margin: 10px
+            font-size: 42px
+            color: $Brown
+            font-weight: 600
+        .article__body
+            margin: 10px 30px 10px 30px
+            font-size: 30px
+        .backbtn
+            font-size: 18px
+            width: 150px
+            background: white
+            padding: 5px
+            border: 2px solid rgba(0,0,255,0.1)
+            border-radius: 3px
+            &:hover
+                background: rgba(0,0,255,0.1)
+                cursor: pointer
+    .newArticle,.editarticle
+        height: 100vh
+        position: relative
+        width: 60%
+        display: flex
+        flex-direction: column
+        padding: 20px
+        input[type='text']
+            height: 120px
+            font-size: 40px
+            padding: 10px
+            &:hover
+                border: 1px solid $Wine
+        textarea
+            margin-top: 10px
+            height: 60vh
+            font-size: 22px
+            padding: 10px
+            &:hover
+                border: 1px solid $Wine
+        input[type='submit']
+            background: $Wine
+            position: absolute
+            right: 20px
+            bottom: 20px
+            font-size: 80px
+            color: white
+            width: 120px
+            height: 120px
+            border-radius: 120px
+            &:hover
+                cursor: pointer
+.login__form
+    width: 400px
+    height: 400px
+    font-size: 26px
+    
+    margin: auto
+    margin-top: 5%
+    position: relative
+    padding: 20px
+    border: 3px solid $Brown
+    background: rgba(255,255,255,0.4)
+    *
+        font-size: 26px
+        margin-top: 5px
+    .field
+        display: flex
+        flex-direction: column
+        input
+            margin-left: 10px
+            padding: 10px
+            &:hover
+                border: 1px solid $Orange
+    button
+        position: absolute
+        right: 20px
+        bottom: 10px
+        padding: 10px
+        display: block
+        border: none
+        border-radius: 5px
+        background: $Orange-t7
+        color: white
+        &:hover
+            cursor: pointer
+            background: $Orange-t5
+            color: $Brown
+            font-weight: 700
+
+
+
+
+            
+
+
+    
+
