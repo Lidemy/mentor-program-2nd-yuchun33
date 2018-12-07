@@ -225,6 +225,9 @@ a {
 .page .newArticle input[type='submit']:hover, .page .editarticle input[type='submit']:hover {
   cursor: pointer;
 }
+.page .editarticle input[type='submit'] {
+  font-size: 40px;
+}
 
 .login__form {
   width: 400px;

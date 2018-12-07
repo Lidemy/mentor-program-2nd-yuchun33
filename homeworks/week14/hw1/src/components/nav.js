@@ -1,5 +1,5 @@
 import React from 'react'
-import { HashRouter as Router, Link, withRouter } from "react-router-dom";
+import { HashRouter as Router, Link } from "react-router-dom";
 
 class Nav extends React.Component {
     constructor(props){
@@ -8,15 +8,14 @@ class Nav extends React.Component {
             active: 'Home'
         }
     }
+    //登出
     handleLogout = () =>{
         const { logout } = this.props
         logout()
     }
     render(){
         const {location, login} = this.props
-        let tab = location.pathname
-        console.log(login);//拿不到，因為不會 rerender?
-        
+        let tab = location.pathname        
         return(
             <Router>
             <ul className="nav">
@@ -39,4 +38,4 @@ class Nav extends React.Component {
     }
 }
 
-export default withRouter(Nav)
+export default Nav
