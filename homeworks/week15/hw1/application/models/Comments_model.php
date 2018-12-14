@@ -5,15 +5,13 @@
         {
             $this->load->database();
         }
+        //拿留言
         public function getComments()
         {
             $query = $this->db->get('yuchun_board');
             return $query->result_array();
         }
-        public function getUsername()
-        {
-            return '';
-        }
+        //拿最後一個 ID
         public function getLastID()
         {
             $query = $this->db->query('SELECT * FROM yuchun_board WHERE ID = (SELECT MAX(ID) FROM yuchun_board)');
@@ -23,6 +21,7 @@
                 return $row[0]['ID'];//???????
             }
         }
+        //新增留言
         public function insertComment($nickname, $content, $parent, $timestamp)
         {
             $data = array(
@@ -33,10 +32,12 @@
             );
             return $this->db->insert('yuchun_board', $data);
         }
+        //刪除留言
         public function deleteComment($deleteId)
         {
             return $this->db->delete('yuchun_board', array('ID' => $deleteId)); 
         }
+        //更新留言
         public function updateComment($updateId, $updateComment, $timestamp){
             $updatedata = array(
                 'content' => $updateComment,

@@ -4,6 +4,7 @@
         {
             $this->load->database();
         }
+        //新增使用者
         public function createUser($nickname, $userEmail, $password)
         {
             $hash_password = password_hash($password, PASSWORD_DEFAULT);
