@@ -13,8 +13,9 @@
             $data['user'] = $this->session->userdata('user');
             $data['comments'] = $this->comments_model->getcomments();
             $this->load->view('comments/comment', $data);
-                $this->load->view('comments/ajax');
+            $this->load->view('comments/ajax');
         }
+        //新增留言
         public function createcomment()
         {
             $timestamp = date('m-d H:i:s',strtotime("now"));
@@ -23,17 +24,19 @@
             $parent = $this->input->post('parent');
             $this->comments_model->insertComment($nickname, $content, $parent, $timestamp);
             $lastID = $this->comments_model->getLastID();
-            //$this->load->view('comments/create');
+            
             header("Content-Type: application/json");//!
             $res = ['id'=> $lastID, 'timestamp'=>$timestamp];
             echo json_encode($res);
         }
+        //刪除留言
         public function deleteComment()
         {
             $deleteId = $this->input->post('deleteId');
             echo $deleteId;
             $this->comments_model->deleteComment($deleteId);
         }
+        //更新留言
         public function updateComment()
         {
             $timestamp = date('m-d H:i:s',strtotime("now"));
