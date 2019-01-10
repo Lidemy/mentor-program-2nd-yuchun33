@@ -8,6 +8,7 @@
         str = str.toString().replace(lt, "&lt;").replace(gt, "&gt;").replace(ap, "&#39;").replace(ic, "&#34;");
         return str
     }
+
     //新增留言
     $('body').on("submit", ".createCommentForm", function(evt){
         evt.preventDefault()
@@ -66,10 +67,8 @@
             $(evt.currentTarget).closest('.comment__sub').find('.comment__sub__updateForm').toggle();            
         }
     })
-
     //編輯
     $(".Y-container").on("submit", ".updateForm", function(evt){
-        
         evt.preventDefault()
         let parames = {
             updateId: $(evt.currentTarget).find('input[name="updateId"]').val(),
@@ -83,6 +82,7 @@
                 console.log('update successfully')
             }
         })
+
         console.log($(evt.currentTarget).parent().prev())    
         $(evt.currentTarget).parent().toggle()
         $(evt.currentTarget).parent().prev().toggle();   
@@ -104,6 +104,7 @@
                         <button class="btn--edit main__function--edit" type="button" class="button">編輯</button>
                     </div>
                 </div>
+
                 <div class='comment__main__content'>${u_content}</div>
                 <div class='comment__main__updateForm form-group p-3 bg-white rounded'>
                     <form class='updateForm'>
