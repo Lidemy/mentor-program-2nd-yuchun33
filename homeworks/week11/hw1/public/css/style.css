@@ -1,7 +1,14 @@
+<<<<<<< HEAD
+=======
+body {
+  position: relative;
+}
+>>>>>>> reset
 body * {
   box-sizing: border-box;
 }
 
+<<<<<<< HEAD
 .createComment {
   width: 960px;
   margin: 0 auto;
@@ -13,18 +20,73 @@ body * {
   margin: 0 auto;
 }
 
+=======
+.nav__user {
+  color: white;
+}
+
+.Mynav {
+  width: 100%;
+  z-index: 5;
+  position: fixed;
+  background-color: #4d4847;
+}
+.Mynav .logo {
+  font-size: 36px;
+  color: #17a2b8;
+}
+.Mynav .logo:hover {
+  font-weight: 700;
+}
+
+.Y-container {
+  position: relative;
+  top: 100px;
+}
+.Y-container .user {
+  font-size: 30px;
+}
+
+.myBtn {
+  margin-top: 20px;
+}
+
+.comment {
+  background: #235789;
+}
+>>>>>>> reset
 .comment * {
   font-size: 20px;
 }
 .comment .comment__main {
+<<<<<<< HEAD
+=======
+  width: 100%;
+>>>>>>> reset
   border: 1px solid #255359;
 }
 .comment .comment__main .comment__main__info {
   font-weight: 700;
   font-size: 40px;
   position: relative;
+<<<<<<< HEAD
   background: rgba(170, 246, 131, 0.7);
   padding: 5px 8px 5px 8px;
+=======
+  background: #235789;
+  color: white;
+  padding: 5px 8px 5px 8px;
+  display: flex;
+  flex-direction: column;
+}
+.comment .comment__main .comment__main__info .comment__main__nickname {
+  font-size: 30px;
+}
+.comment .comment__main .comment__main__info .comment__main__createdAt {
+  font-weight: 500;
+  display: flex;
+  justify-content: flex-end;
+>>>>>>> reset
 }
 .comment .comment__main .comment__main__info .comment__main__function {
   position: absolute;
@@ -33,16 +95,34 @@ body * {
 }
 .comment .comment__main .comment__main__content {
   padding: 5px 8px 5px 8px;
+<<<<<<< HEAD
+=======
+  background-color: white;
+  white-space: pre-wrap;
+>>>>>>> reset
 }
 .comment .comment__main .comment__main__updateForm {
   display: none;
 }
+<<<<<<< HEAD
 .comment .comment__sub {
   margin-top: 5px;
   border: 1px solid #5da271;
 }
 .comment .comment__sub .comment__sub__info {
   color: #5da271;
+=======
+.comment .comment__subs {
+  width: 100%;
+}
+.comment .comment__sub {
+  margin-top: 5px;
+  border: 1px solid #235789;
+}
+.comment .comment__sub .comment__sub__info {
+  background: #e3f2fd;
+  color: #235789;
+>>>>>>> reset
   font-weight: 700;
   font-size: 28px;
   position: relative;
@@ -55,32 +135,72 @@ body * {
 }
 .comment .comment__sub .comment__sub__content {
   padding: 5px 8px 5px 8px;
+<<<<<<< HEAD
+=======
+  background-color: white;
+  white-space: pre-wrap;
+>>>>>>> reset
 }
 .comment .comment__sub .comment__sub__updateForm {
   display: none;
 }
 .comment .comment__form {
+<<<<<<< HEAD
   margin-top: 10px;
 }
 
+=======
+  width: 100%;
+  margin-top: 10px;
+}
+
+.bottom_page {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+>>>>>>> reset
 .main__function--delete,
 .main__function--edit,
 .sub__function--delete,
 .sub__function--edit {
+<<<<<<< HEAD
+=======
+  padding-bottom: 30px;
+>>>>>>> reset
   border: 0px;
   width: 60px;
   height: 25px;
   margin-left: 5px;
+<<<<<<< HEAD
   background: #5da271;
   color: white;
   line-height: 24px;
+=======
+  background: white;
+  color: #235789;
+}
+.main__function--delete:hover,
+.main__function--edit:hover,
+.sub__function--delete:hover,
+.sub__function--edit:hover {
+  cursor: pointer;
+  background: #17a2b8;
+  box-shadow: 1px 1px 1px 1px solid grey;
+>>>>>>> reset
 }
 
 .sub__function--delete,
 .sub__function--edit {
   background: white;
+<<<<<<< HEAD
   border: 1px solid #5da271;
   color: #5da271;
+=======
+  border: 1px solid #235789;
+  color: #235789;
+>>>>>>> reset
 }
 
 .button--login {
@@ -94,7 +214,11 @@ body * {
   color: white;
 }
 .button--login:hover {
+<<<<<<< HEAD
   background: #76c1aa;
+=======
+  background: #17a2b8;
+>>>>>>> reset
   box-shadow: 1px 1px 2px 1px #43aa8b;
 }
 

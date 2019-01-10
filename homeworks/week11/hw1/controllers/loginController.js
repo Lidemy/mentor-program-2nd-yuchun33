@@ -5,13 +5,21 @@ const verify = crypto.createVerify('md5');
 module.exports = {
     //A. 登入頁面
     loginPage: (req, res) => {
+<<<<<<< HEAD
         res.render('login')
+=======
+        res.render('login',{err:''})
+>>>>>>> reset
     },
     //B. 登入檢查
     loginHandler: (req, res)=>{
         //1. 使用者輸入帳號密碼
         let username = req.body.username
         let password = req.body.password
+<<<<<<< HEAD
+=======
+        console.log('正在登入1')
+>>>>>>> reset
         //2. 是否有這個使用者
         db.findUserByEmail(username)
         .then((result)=>{
@@ -27,6 +35,7 @@ module.exports = {
                 //6. 進入留言板
                 db.getComments()
                 .then((dbresult)=>{
+<<<<<<< HEAD
                     res.redirect('/comments')
                 })
             } else {
@@ -34,6 +43,19 @@ module.exports = {
                 res.redirect('/')
             }
         })
+=======
+                    res.redirect('/')
+                })
+            } else {
+                let error = '您輸入的密碼錯誤'
+                res.render('login', {err: error||''})
+            }
+        })
+        .catch(()=>{
+            let error = '無此帳號'
+            res.render('login', {err: error||''})
+        })
+>>>>>>> reset
     },
     //C. 登出
     logoutHandler: (req, res)=>{
