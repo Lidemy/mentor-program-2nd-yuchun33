@@ -6,12 +6,13 @@ const loginController = require('./controllers/loginController')
 const registerController = require('./controllers/registerController')
 const commentsController = require('./controllers/commentsController')
 const db = require('./models/dbhandlers')
+const dbinfo = require('./private/dbinfo')
 
 let options = {
-    host:"",
-    user:"",
-    password:"",
-    database:""
+    host: dbinfo.host,
+    user: dbinfo.username,
+    password: dbinfo.password,
+    database: dbinfo.database
 }
 
 const session = require('express-session');

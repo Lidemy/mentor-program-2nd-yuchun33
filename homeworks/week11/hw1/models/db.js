@@ -1,7 +1,9 @@
 const Sequelize = require('sequelize')
+const dbinfo = require('../private/dbinfo')
+
 // 定義 db
-const db = new Sequelize('','','',{
-    host: '',
+const db = new Sequelize(dbinfo.database, dbinfo.username, dbinfo.password,{
+    host: dbinfo.host,
     dialect: 'mysql'
 })
 // 連線 db
@@ -46,7 +48,7 @@ Comments.sync().then(()=>{
 })
 
 module.exports = {
-    db, db,
+    db: db,
     Users: Users,
     Comments: Comments
 }
