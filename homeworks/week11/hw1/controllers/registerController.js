@@ -18,8 +18,12 @@ module.exports = {
             .then(()=>{
                 console.log('註冊成功')
                 req.session.nickname = nickname
-                res.redirect('/comments')
+                res.redirect('/')
             }) 
+            .catch(()=>{
+                const error = '此信箱已註冊過'
+                res.render('register', {err: error||''})
+            })
         }
     }
 }

@@ -1,38 +1,74 @@
+$lightblue: #e3f2fd
+$darkblue: #235789
+$greenblue: #17a2b8
+
 body 
+    position: relative
     *
         box-sizing: border-box
-.createComment
-    width: 960px
-    margin: 0 auto
-    background: pink
+.nav__user
+    color: white    
+.Mynav
+    width: 100%
+    z-index: 5
+    position: fixed
+    background-color: #4d4847
+    .logo
+        font-size: 36px
+        color: $greenblue
+        &:hover
+            font-weight: 700
+
 .Y-container
-    width: 960px
-    margin: 0 auto
-    //border: 1px solid seagreen
+    position: relative
+    top: 100px
+    .user
+        font-size: 30px
+        
+
+.myBtn
+    margin-top: 20px
 .comment
+    background: $darkblue
     *
         font-size: 20px
+        
     .comment__main
-        border: 1px solid #255359
+        width: 100%
+        border: 1px solid #255359        
         .comment__main__info
             font-weight: 700
             font-size: 40px
             position: relative
-            background: rgba(170,246,131,0.7)
+            background: $darkblue
+            color: white
             padding: 5px 8px 5px 8px
+            display: flex
+            flex-direction: column
+            .comment__main__nickname
+                font-size: 30px
+            .comment__main__createdAt
+                font-weight: 500
+                display: flex
+                justify-content: flex-end
             .comment__main__function
                 position: absolute
                 right: 20px
                 top: 5px
         .comment__main__content
             padding: 5px 8px 5px 8px
+            background-color: white
+            white-space: pre-wrap
         .comment__main__updateForm
             display: none
+    .comment__subs
+        width: 100%
     .comment__sub
         margin-top: 5px
-        border: 1px solid #5da271
+        border: 1px solid $darkblue
         .comment__sub__info
-            color: #5da271
+            background: $lightblue
+            color: $darkblue
             font-weight: 700
             font-size: 28px
             position: relative
@@ -43,28 +79,41 @@ body
                 top: 5px
         .comment__sub__content
             padding: 5px 8px 5px 8px
+            background-color: white
+            white-space: pre-wrap
         .comment__sub__updateForm
             display: none
     .comment__form
+        width: 100%
         margin-top: 10px
+
+.bottom_page
+    width: 100%
+    display: flex
+    justify-content: center
 
 .main__function--delete,
 .main__function--edit,
 .sub__function--delete,
 .sub__function--edit,
+    padding-bottom: 30px
     border: 0px
     width: 60px
     height: 25px
     margin-left: 5px
-    background: #5da271
-    color: white
-    line-height: 24px
+    background: white
+    color: $darkblue
+    &:hover
+        cursor: pointer
+        background: $greenblue
+        box-shadow: 1px 1px 1px 1px solid grey
+
 
 .sub__function--delete,
 .sub__function--edit,
     background: white
-    border: 1px solid #5da271
-    color: #5da271
+    border: 1px solid $darkblue
+    color: $darkblue
 
 .button--login
     position: absolute
@@ -76,7 +125,7 @@ body
     background: #43aa8b
     color: white
     &:hover
-        background: #76c1aa
+        background: $greenblue
         box-shadow: 1px 1px 2px 1px #43aa8b
 
 .hide
@@ -87,3 +136,7 @@ body
 .error
     width: 300px
     margin: 0 auto
+
+@media all and (max-width: 759px)
+    
+

@@ -1,10 +1,19 @@
 <script>
+    //XSS
+    function XSS(str){
+        var lt = /</g, 
+        gt = />/g, 
+        ap = /'/g, 
+        ic = /"/g;
+        str = str.toString().replace(lt, "&lt;").replace(gt, "&gt;").replace(ap, "&#39;").replace(ic, "&#34;");
+        return str
+    }
     //新增留言
     $('body').on("submit", ".createCommentForm", function(evt){
         evt.preventDefault()
         var parames = {
-            nickname:$(evt.currentTarget).find('input[name="nickname"]').val(),
-            content:$(evt.currentTarget).find('textarea[name="content"]').val(),
+            nickname:XSS($(evt.currentTarget).find('input[name="nickname"]').val()),
+            content:XSS($(evt.currentTarget).find('textarea[name="content"]').val()),
             parent:$(evt.currentTarget).find('input[name="parent"]').val()
         }
         $.ajax({
@@ -14,9 +23,10 @@
             success: function(response){
                 console.log(response.id)
                 if(parames.parent==0){
-                    $('.Y-container').prepend(prependMain(parames.nickname, response.createdAt, response.id, parames.content))
+                    $(prependMain(parames.nickname, response.createdAt, response.id, parames.content)).insertAfter($(evt.currentTarget).parent())
+                    //$('.Y-container').prepend(prependMain(parames.nickname, response.createdAt, response.id, parames.content))
                 } else {
-                    console.log($(evt.currentTarget).parent().prev().prepend(prependSub(parames.nickname, response.createdAt, response.id, parames.content)))
+                    $(evt.currentTarget).parent().parent().prev().prepend(prependSub(parames.nickname, response.createdAt, response.id, parames.content))
                 }
             }
         })
@@ -29,27 +39,26 @@
         var parames = {
             deleteId:$(evt.currentTarget).find('input[name="deleteId"]').val(),
         }
-        $.ajax({
-            data: parames,
-            url: '/deleteComment',
-            method: 'POST',
-            success: function(){
-                console.log('delete successfully')
+        if(confirm('確定要刪除嗎?')){
+            $.ajax({
+                data: parames,
+                url: '/deleteComment',
+                method: 'POST',
+                success: function(){
+                    console.log('delete successfully')
+                }
+            })
+            if($(evt.currentTarget).parent()[0].className=='comment__main__function row'){
+                $(evt.currentTarget).closest('.comment').css("display","none");
+            } else {
+                $(evt.currentTarget).closest('.comment__sub').css("display","none");
             }
-        })
-        console.log(evt)
-        console.log($(evt.currentTarget).parent()[0])
-        console.log($(evt.currentTarget).parent()[0].className)
-        if($(evt.currentTarget).parent()[0].className=='comment__main__function row'){
-            $(evt.currentTarget).closest('.comment').css("display","none");
-        } else {
-            $(evt.currentTarget).closest('.comment__sub').css("display","none");
         }
+        
     })
 
     //顯示編輯框
     $(".Y-container").on("click", ".btn--edit", function(evt){
-        console.log('hihih')
         if($(evt.currentTarget).parent()[0].className=='comment__main__function row'){
             $(evt.currentTarget).closest('.comment__main').find('.comment__main__content').toggle();
             $(evt.currentTarget).closest('.comment__main').find('.comment__main__updateForm').toggle();
@@ -59,40 +68,33 @@
         }
     })
 
-
+    //編輯
     $(".Y-container").on("submit", ".updateForm", function(evt){
+        
         evt.preventDefault()
-        let params = {
+        let parames = {
             updateId: $(evt.currentTarget).find('input[name="updateId"]').val(),
-            updateComment:  $(evt.currentTarget).find('textarea[name="updateComment"]').val(),
+            updateComment: XSS($(evt.currentTarget).find('textarea[name="updateComment"]').val()),
         }
         $.ajax({
-            data: params,
+            data: parames,
             url: '/updateComment',
             method: 'POST',
             success: function(){
                 console.log('update successfully')
             }
         })
-        console.log('hihih1')
-        if($(evt.currentTarget).parent().parent()[0].className=='comment__main container'){
-            console.log('hihih2')
-            $(evt.currentTarget).closest('.comment__main').find('.comment__main__content').css("display","block");
-            $(evt.currentTarget).closest('.comment__main').find('.comment__main__updateForm').css("display","none");
-            $(evt.currentTarget).closest('.comment__main').find('.comment__main__content').html(params.updateComment);
-           
-        } else {
-            $(evt.currentTarget).closest('.comment__sub').find('.comment__sub__content').css("display","block");
-            $(evt.currentTarget).closest('.comment__sub').find('.comment__sub__updateForm').css("display","none");            
-            $(evt.currentTarget).closest('.comment__sub').find('.comment__sub__content').html(params.updateComment);
-        }
-
+        console.log($(evt.currentTarget).parent().prev())    
+        $(evt.currentTarget).parent().toggle()
+        $(evt.currentTarget).parent().prev().toggle();   
+        $(evt.currentTarget).parent().prev().html(parames.updateComment);        
+        
     })
 
     function prependMain(u_nickname, u_createdAt, u_id, u_content){
-        return `<div class='comment shadow-sm p-3 mb-3 bg-white rounded' >
-                <div class='comment__main container'>
-                <div class='comment__main__info row'>
+        return `<div class='comment shadow-sm p-3 mb-3 bg-white rounded row' >
+                <div class='comment__main'>
+                <div class='comment__main__info'>
                     <div class='comment__main__nickname'>${u_nickname}</div>
                     <div class='comment__main__createdAt'>${u_createdAt}</div>
                     <div class='comment__main__function row'>
@@ -103,28 +105,33 @@
                         <button class="btn--edit main__function--edit" type="button" class="button">編輯</button>
                     </div>
                 </div>
-                <div class='comment__main__content row'>${u_content}</div>
+                <div class='comment__main__content'>${u_content}</div>
                 <div class='comment__main__updateForm form-group p-3 bg-white rounded'>
                     <form class='updateForm'>
                         <input type='text' name='updateId' value="${u_id}" hidden>
                         <textarea class="form-control" name="updateComment">${u_content}</textarea>
-                        <input type='submit' name="delete" value='更新'>
+                        <div style='height: 10px;'></div>
+                        <button class="btn btn-outline-info my-2 my-sm-0 btn-lg btn-block" type="submit">更新</button> 
                     </form>
                 </div>
                 </div>
                 <div class='comment__subs'>
                 </div>
-                <div class='Comment__form form-group'>
-                    <form class='createCommentForm'>
-                        <input type='text' name='nickname' value='<%=user%>' hidden>
-                        <input type='text' name='parent' value="${u_id}" hidden>
-                        <textarea class="form-control" name="content" placeholder="回應："></textarea>
-                        <input type='submit' name='submit' value='送出'>
-                    </form>
+
+                <div class='comment__form'>
+                    <div class='form-group'>
+                        <form class='createCommentForm'>
+                            <input type='text' name='nickname' value='<%=user%>' hidden>
+                            <input type='text' name='parent' value="${u_id}" hidden>
+                            <textarea class="form-control" name="content" placeholder="回應："></textarea>
+                            <input type='submit' name='submit' value='送出'>
+                        </form>
+                    </div>
                 </div>
                 </div>`
     }
     function prependSub(u_nickname, u_createdAt, u_id, u_content){
+        console.log(u_content)
         return `
             <div class='comment__sub container'>
                 <div class='comment__sub__info row'>
@@ -144,7 +151,9 @@
                     <form class='updateForm'>
                         <input type='text' name='updateId' value="${u_id}" hidden>
                         <textarea class="form-control" name="updateComment">${u_content}</textarea>
-                        <input type='submit' name="delete" value='更新'>
+                        <div style='height: 10px;'></div>
+                        <button class="btn btn-outline-info my-2 my-sm-0 btn-lg btn-block" type="submit">更新</button> 
+                        
                     </form>
                 </div>
             </div>`
