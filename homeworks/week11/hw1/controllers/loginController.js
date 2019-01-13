@@ -34,6 +34,17 @@ module.exports = {
                 res.redirect('/')
             }
         })
+                  res.redirect('/')
+                })
+            } else {
+                let error = '您輸入的密碼錯誤'
+                res.render('login', {err: error||''})
+            }
+        })
+        .catch(()=>{
+            let error = '無此帳號'
+            res.render('login', {err: error||''})
+        })
     },
     //C. 登出
     logoutHandler: (req, res)=>{

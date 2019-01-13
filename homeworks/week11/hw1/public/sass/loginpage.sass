@@ -4,12 +4,22 @@ $darkGreen: #5da271
     width: 600px
     height: 400px
     margin: 20px auto
+
+$greenblue: #17a2b8
+$darkGreen: #5da271
+$brown: #4d4847
+.formdiv
+    position: relative
+    top: 100px
+    max-width: 600px
     *
         font-size: 20px
     h1
         text-align: center
         font-size: 46px
         font-weight: 700
+        color: $darkGreen
+        color: $greenblue
         color: $darkGreen
     form
         width: 90%
@@ -23,4 +33,20 @@ $darkGreen: #5da271
             margin: 5px auto
             border: 1px solid $lightGreen
             background: white
+            background: $greenblue
+            &:hover
+                cursor: pointer
+                box-shadow: 1px 1px 1px 1px grey
+                background-color: $brown
+                color: $greenblue
+        .btn--white
+            width: 100%
+            margin: 5px auto
+            border: 1px solid grey
+            background: white
+            &:hover
+                cursor: pointer
+                box-shadow: 1px 1px 1px 1px grey
+                border: 1px solid $greenblue
+                color: $greenblue
             

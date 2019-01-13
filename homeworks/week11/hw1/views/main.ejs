@@ -5,40 +5,63 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>留言板</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="/css/style.css" rel="stylesheet" type="text/css">
     <link href="/css/style.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-</head>
 
 <body>
-<div><%= user%></div>
+
 <%if(user!==''){%>
-    <form method='GET' action='/logout'>
-        <input class="btn" type='submit' name='submit' value='登出'>
-    </form>   
-    <div class='createComment form-group shadow-sm p-3 mb-5 bg-white rounded'>
-        <h1>新增留言：</h1>
-        <form class='createCommentForm'>
-            <input type='text' name='nickname' value='<%=user%>' hidden>
-            <input type='text' name='parent' value='0' hidden>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="content">在想什麼？</textarea>
-            <input class="btn" type='submit' name='submit' value='送出'>
-        </form>
-    </div>
+    <nav class="navbar navbar-light Mynav" style="background-color: #4d4847;">
+        <div class='nav__title'><a class='logo' href='./'>留言板</a></div>
+        <form class="form-inline" method='GET' action='/logout'>
+            <button class="btn btn-outline-info my-2 my-sm-0" type="submit">登出</button>
+        </form>  
+    </nav>
 <%} else{%>
-    <form method='GET' action='/'>
-        <input class="btn" type='submit' name='submit' value='登入留言'>
-    </form>    
+    <nav class="navbar navbar-light Mynav" style="background-color: #4d4847;">
+        <div class='nav__title'><a class='logo' href='./'>留言板</a></div>
+    </nav>   
 <%}%>    
 
-<div class='Y-container'>    
-    <% for(let i=0; i<result.length; i++){%>
-        <%if(result[i].parent==0){%>
-        <div class='comment shadow-sm p-3 mb-3 bg-white rounded' >
-            <div class='comment__main container'>
-                <div class='comment__main__info row'>
+<div class='Y-container container'>    
+
+ 
+    <%if(user!==''){%>
+    <div class='form-group shadow-sm p-3 mb-5 rounded container myForm' style='background-color:#f4fff8;'>
+        <div class='user'>嗨，<%= user%></div>
+        <form class='form-group createCommentForm'>
+            <input type='text' name='nickname' value='<%=user%>' hidden>
+            <input type='text' name='parent' value='0' hidden>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="content" required>在想什麼？</textarea>
+            <div style='height: 10px;'></div>
+            <button class="btn btn-outline-info my-2 my-sm-0 btn-lg btn-block" type="submit" required>送出</button>
+        </form>
+    </div>
+    <%} else{%>
+        <div class='comment shadow-sm p-2 mb-3  rounded row' style='background-color: #f4fff8;'>
+            <form class="form-inline" method='GET' action='/login'>
+                <button class="btn btn-outline-info my-2 my-sm-0" type="submit">還沒登入嗎?</button>
+            </form>
+        </div>
+    <%}%>
+    
+    <%
+    let comment = 0
+    if(p){
+        comment = p*10
+    }else{
+        comment = 10
+    }%>
+
+    <% for(let i=comment-10; i<comment; i++){%>
+        <%if(result[i] && result[i].parent==0){%>
+        <div class='comment shadow-sm p-2 mb-3  rounded row' style='background-color: #f4fff8;'>
+            <div class='comment__main' >
+                <div class='comment__main__info card-header'>
                     <div class='comment__main__nickname'><%= result[i].nickname %></div>
-                    <div class='comment__main__createdAt'><%= result[i].createdAt %></div>
+                    <div class='comment__main__createdAt'><div><%= result[i].createdAt %></div></div>
                     
                     <%if(user==result[i].nickname){%>
                         <div class='comment__main__function row'>
@@ -51,12 +74,13 @@
                     <%}%>
 
                 </div>
-                <div class='comment__main__content row'><%= result[i].comment %></div>
+                <div class='comment__main__content card-body'><%=result[i].comment %></div>
                 <div class='comment__main__updateForm form-group p-3 bg-white rounded'>
                     <form class='updateForm'>
                         <input type='text' name='updateId' value="<%=result[i].id%>" hidden>
-                        <textarea class="form-control" name="updateComment"><%=result[i].comment%></textarea>
-                        <input type='submit' name="delete" value='更新'>
+                        <textarea class="form-control" name="updateComment"><%= result[i].comment%></textarea>
+                        <div style='height: 10px;'></div>
+                        <button class="btn btn-outline-info my-2 my-sm-0 btn-lg btn-block" type="submit">更新</button> 
                     </form>
                 </div>
 
@@ -80,13 +104,15 @@
                                 <%}%>
                             </div>
 
-                            <div class='comment__sub__content row'><%=result[j].comment%></div>
-
-                            <div class='comment__sub__updateForm form-group bg-white roundeds'>
+                            <div class='comment__sub__content row'><%= result[j].comment%></div>
+                    
+                            <div class='comment__sub__updateForm form-group p-3 bg-white rounded'>
                                 <form class='updateForm'>
-                                    <input type='text' name='updateId' value="<%=result[j].id%>" hidden>
-                                    <textarea class="form-control" name="updateComment"><%=result[j].comment%></textarea>
-                                    <input type='submit' name="delete" value='更新'>
+                                    <input type='text' name='updateId' value="<%= result[j].id%>" hidden>
+                                    <textarea class="form-control" name="updateComment"><%= result[j].comment%></textarea>
+                                    <div style='height: 10px;'></div>
+                                    <button class="btn btn-outline-info my-2 my-sm-0 btn-lg btn-block" type="submit">更新</button>  
+
                                 </form>
                             </div>
 
@@ -96,13 +122,14 @@
             </div>
             <%if(user!==''){%>
             <div class='comment__form'>
-                <div class='form-group'>
+                <div class='form-group '>
                     <form class='createCommentForm'>
                         <% let parent=result[i].id %>
                         <input type='text' name='nickname' value='<%=user%>' hidden>
                         <input type='text' name='parent' value=<%=parent%> hidden>
-                        <textarea class="form-control" name="content" placeholder="回應："></textarea>
-                        <input class="btn" type='submit' name='submit' value='送出'>
+                        <textarea class="form-control" name="content" placeholder="回應：" required></textarea>
+                        <div style='height: 10px;'></div>
+                        <button class="btn btn-outline-info my-2 my-sm-0 btn-lg btn-block" type="submit">送出</button>  
                     </form>
                 </div>
             </div>
@@ -111,6 +138,17 @@
         </div>
         <%}%>
     <%}%>
+
+    <% let page = Math.ceil(result.length/10) %>
+    <div class='bottom_page'>
+    <ul class="pagination">
+        <li class="page-item"><a class="page-link" href="/comments/<%= Number(p)-1%>">Previous</a></li>
+    <% for(let i=1; i<=page; i++){%>
+        <li class="page-item"><a class="page-link" href="/comments/<%= i%>"><%= i%></a></li>
+    <%}%>
+        <li class="page-item"><a class="page-link" href="/comments/<%= Number(p)+1%>">Next</a></li>
+    </ul>
+    </div>
 </div>
 
 </body>
